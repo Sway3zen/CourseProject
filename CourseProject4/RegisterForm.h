@@ -275,7 +275,7 @@ namespace Regform {
 		this->Close();
 
 	}
-		   
+
 
 	private: System::Void LoginNextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		RegBoxUsername = System::Convert::ToString(RegTextBoxLogin->Text);
@@ -288,11 +288,12 @@ namespace Regform {
 		sprintf(file_name, "%s%s", temp_path, folder_path);
 
 		int result = mkdir(file_name);
-		sprintf(file_name, "%s\\%s.dat", file_name, RegBoxUsername);
 
-		char* Usernamechar = (char*)malloc((RegTextBoxLogin->MaxLength + 1) * sizeof(char));
+		sprintf(file_name, "%s\\%s.bin", file_name, RegBoxUsername);
+
+		char Usernamechar[64];
 		sprintf(Usernamechar, "Login: %s", RegTextBoxLogin->Text);
-		char* Passwordchar = (char*)malloc((RegTextBoxPassword->MaxLength + 1) * sizeof(char));
+		char Passwordchar[128];
 		sprintf(Passwordchar, "\nPassword: %s", RegTextBoxPassword->Text);
 
 
@@ -309,16 +310,33 @@ namespace Regform {
 				System::String^ temp_path_str = gcnew System::String(file_name);
 				System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 			}
+			else {
+				fwrite(&registration, sizeof(Registration), 1, fp);
+				fclose(fp);
+
+			}
 		}
-		// Запис об'єкту структури до файлу
-		if (fwrite(&registration, sizeof(Registration), 1, fp) != 1) {
-			// Обробка помилки запису до файлу
-			System::String^ temp_path_str = gcnew System::String(file_name);
-			System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-		}
-		// Закриття файлу
-		fclose(fp);
+		
 		this->Close();
+
+		// Запис об'єкту структури до файлу
+		//fp = fopen(file_name, "wb");
+		//if (fp == NULL) {
+		//	// Обробка помилки відкриття файлу
+		//	System::String^ temp_path_str = gcnew System::String(file_name);
+		//	System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+		//}
+		//else {
+		//	// Запис об'єкту структури до файлу
+		//	if (fwrite(&registration, sizeof(Registration), 1, fp) != 1) {
+		//		// Обробка помилки запису до файлу
+		//		System::String^ temp_path_str = gcnew System::String(file_name);
+		//		//System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+		//	}
+		//	// Закриття файлу
+		//	fclose(fp);
+		//}
+		// Закриття файлу
 	}
 
 

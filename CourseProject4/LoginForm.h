@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <direct.h>
 #include "InfoForm.h"
 
 #pragma once
@@ -268,7 +269,7 @@ namespace LogForm {
 
 		FILE* fp;
 		char file_name[100];
-		sprintf(file_name, "%s\\Testify\\Database\\%s.dat", temp_path, LoginBoxUsername);
+		sprintf(file_name, "%s\\Testify\\Database\\%s.bin", temp_path, LoginBoxUsername);
 
 		char login[256], password[256], isAdmin[50];
 
@@ -306,6 +307,12 @@ namespace LogForm {
 		}
 	}
 private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	char* temp_path = getenv("TEMP");
+	char file_name[255];
+	sprintf(file_name, "%s\\Testify", temp_path);
+
+	int result = mkdir(file_name);
+
 }
 private: System::Void LoginRegisterBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
