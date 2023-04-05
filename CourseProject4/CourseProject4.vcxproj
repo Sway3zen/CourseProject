@@ -123,6 +123,7 @@
     <ClCompile Include="InfoForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
+    <ClCompile Include="Switchtask.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InfoForm.h">
@@ -132,6 +133,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RegisterForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Switchtask.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>

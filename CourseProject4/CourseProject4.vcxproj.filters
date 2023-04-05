@@ -24,6 +24,9 @@
     <ClCompile Include="InfoForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Switchtask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RegisterForm.h">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="InfoForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Switchtask.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
