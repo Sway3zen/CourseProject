@@ -295,8 +295,10 @@ namespace CourseProject4 {
 
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
 				this->Hide();
+
 				InfoForm^ infoForm = gcnew InfoForm();
 				infoForm->Show();
+
 				//System::Windows::Forms::MessageBox::Show("Вхід", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 			}
 			else {

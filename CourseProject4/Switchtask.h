@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #pragma once
 
 extern char* loginStr;
@@ -23,6 +24,8 @@ namespace CourseProject4 {
 		Switchtask(void)
 		{
 			InitializeComponent();
+			char* username = loginStr;
+			label1->Text = gcnew String(username);
 		}
 
 	protected:
@@ -98,7 +101,6 @@ namespace CourseProject4 {
 
 		}
 	private: System::Void Switchtask_Load(System::Object^ sender, System::EventArgs^ e) {
-		label1->Text = gcnew String(loginStr);
 	}
 #pragma endregion
 	};

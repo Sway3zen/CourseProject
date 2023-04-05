@@ -6,6 +6,8 @@
 
 #pragma once
 
+extern char* LoginBoxUsername;
+
 namespace CourseProject4 {
 
 	using namespace System;
