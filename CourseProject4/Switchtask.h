@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
-
 #pragma once
+
+extern char* loginStr;
 
 namespace CourseProject4 {
 
@@ -97,7 +98,7 @@ namespace CourseProject4 {
 
 		}
 	private: System::Void Switchtask_Load(System::Object^ sender, System::EventArgs^ e) {
-		label1->Text;
+		label1->Text = gcnew String(loginStr);
 	}
 #pragma endregion
 	};
