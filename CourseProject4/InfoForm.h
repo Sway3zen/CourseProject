@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Switchtask.h"
+
 
 #pragma once
 
-namespace InfoForm {
+namespace CourseProject4 {
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -22,7 +24,6 @@ namespace InfoForm {
 		InfoForm(void)
 		{
 			InitializeComponent();
-			setDefaultText();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -58,29 +59,6 @@ namespace InfoForm {
 		/// </summary>
 		/// 
 	private:
-		System::Void textBox_enter(System::Object^ sender, System::EventArgs^ e) {
-			TextBox^ textBox = dynamic_cast<TextBox^>(sender);
-			if (textBox->Text == "Введіть текст...") {
-				textBox->Text = "";
-			}
-		}
-
-		System::Void textBox_Leave(System::Object^ sender, System::EventArgs^ e) {
-			TextBox^ textBox = static_cast<TextBox^>(sender);
-			if (textBox->Text == "") {
-				textBox->Text = "Введіть текст...";
-				textBox->ForeColor = SystemColors::InactiveCaptionText;
-			}
-		}
-		System::Void setDefaultText() {
-			for each (Control ^ control in this->Controls) {
-				if (control->GetType() == TextBox::typeid) {
-					TextBox^ textBox = static_cast<TextBox^>(control);
-					textBox->Enter += gcnew System::EventHandler(this, &InfoForm::textBox_enter);
-					textBox->Leave += gcnew System::EventHandler(this, &InfoForm::textBox_Leave);
-				}
-			}
-		}
 		void InitializeComponent(void)
 		{
 			this->LoginAuthor = (gcnew System::Windows::Forms::Label());
@@ -115,6 +93,7 @@ namespace InfoForm {
 			this->button1->TabIndex = 6;
 			this->button1->Text = L"Далі";
 			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &InfoForm::button1_Click);
 			// 
 			// label1
 			// 
@@ -160,5 +139,10 @@ namespace InfoForm {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		Switchtask^ task = gcnew Switchtask();
+		task->Show();
+		this->Close();
+	}
+};
 }

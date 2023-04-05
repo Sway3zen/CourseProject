@@ -7,7 +7,7 @@
 #pragma once
 #include "RegisterForm.h"
 
-namespace LogForm {
+namespace CourseProject4 {
 	
 
 	using namespace System;
@@ -16,8 +16,6 @@ namespace LogForm {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;;
-	using namespace Regform;
-	using namespace InfoForm;
 
 	/// <summary>
 	/// Summary for LoginForm
@@ -55,7 +53,7 @@ namespace LogForm {
 
 	private: System::Windows::Forms::Button^ LoginNextBtn;
 
-	private: String^ LoginBoxUsername;
+	public: String^ LoginBoxUsername;
 	private: String^ LoginBoxPassword;
 
 	protected:
@@ -291,19 +289,19 @@ namespace LogForm {
 				}
 			}
 			fclose(fp);
-		}
 
-		System::String^ loginStr = gcnew System::String(login);
-		System::String^ passwordStr = gcnew System::String(password);
+			System::String^ loginStr = gcnew System::String(login);
+			System::String^ passwordStr = gcnew System::String(password);
 
-		if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
-			this->Hide();
-			LogForm::InfoForm^ infoForm = gcnew LogForm::InfoForm();
-			infoForm->Show();
-			//System::Windows::Forms::MessageBox::Show("Вхід", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-		}
-		else {
-			System::Windows::Forms::MessageBox::Show("Невірний логін або пароль.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
+				this->Hide();
+				InfoForm^ infoForm = gcnew InfoForm();
+				infoForm->Show();
+				//System::Windows::Forms::MessageBox::Show("Вхід", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+			}
+			else {
+				System::Windows::Forms::MessageBox::Show("Невірний логін або пароль.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+			}
 		}
 	}
 private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {

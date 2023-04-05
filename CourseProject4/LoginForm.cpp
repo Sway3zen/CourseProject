@@ -1,6 +1,6 @@
 #include "LoginForm.h"
 #include <Windows.h>
-using namespace LogForm;
+using namespace CourseProject4;
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);

@@ -11,8 +11,8 @@
 
 
 
-namespace Regform {
-	typedef struct {
+namespace CourseProject4 {
+	typedef struct{
 		char login[164];
 		char password[164];
 	} Registration;
