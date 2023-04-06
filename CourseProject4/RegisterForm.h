@@ -303,10 +303,8 @@ namespace CourseProject4 {
 
 		FILE* fp = fopen(file_name, "rb");
 		if (fp == NULL) {
-			// Файл не існує, тому його потрібно створити
 			fp = fopen(file_name, "wb");
 			if (fp == NULL) {
-				// Обробка помилки створення файлу
 				System::String^ temp_path_str = gcnew System::String(file_name);
 				System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 			}
@@ -319,24 +317,18 @@ namespace CourseProject4 {
 		
 		this->Close();
 
-		// Запис об'єкту структури до файлу
 		//fp = fopen(file_name, "wb");
 		//if (fp == NULL) {
-		//	// Обробка помилки відкриття файлу
 		//	System::String^ temp_path_str = gcnew System::String(file_name);
 		//	System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 		//}
 		//else {
-		//	// Запис об'єкту структури до файлу
 		//	if (fwrite(&registration, sizeof(Registration), 1, fp) != 1) {
-		//		// Обробка помилки запису до файлу
 		//		System::String^ temp_path_str = gcnew System::String(file_name);
 		//		//System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 		//	}
-		//	// Закриття файлу
 		//	fclose(fp);
 		//}
-		// Закриття файлу
 	}
 
 
