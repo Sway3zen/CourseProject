@@ -3,7 +3,6 @@
 #include <string.h>
 #pragma once
 
-char* LoginUser;
 
 namespace CourseProject4 {
 
@@ -25,8 +24,6 @@ namespace CourseProject4 {
 		{
 			InitializeComponent();
 
-			char* username = LoginUser;
-			label1->Text = gcnew String(username);
 		}
 
 	protected:

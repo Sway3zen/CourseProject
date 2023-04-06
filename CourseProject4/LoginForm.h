@@ -4,12 +4,17 @@
 #include <direct.h>
 #include "InfoForm.h"
 #include <cstring>
+#include <stdbool.h>
 
 #pragma once
 #include "RegisterForm.h"
 
-extern char LoginUser[64];
+bool saveToJsonFile(const char* filename, const char* value) {
+	FILE* fp = fopen(filename, "w");
 
+	fwrite()
+	
+}
 
 namespace CourseProject4 {
 	
@@ -296,12 +301,6 @@ namespace CourseProject4 {
 
 			System::String^ loginStr = gcnew System::String(login);
 			System::String^ passwordStr = gcnew System::String(password);
-			int i;
-			for (i=0; i < loginStr[i]!='\0'; i++) {
-				LoginUser[i] = loginStr[i];
-			}
-			
-			LoginUser[i] = '\0';
 
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
 				this->Hide();
