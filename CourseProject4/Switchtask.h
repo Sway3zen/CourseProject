@@ -3,7 +3,7 @@
 #include <string.h>
 #pragma once
 
-extern char* loginStr;
+char* LoginUser;
 
 namespace CourseProject4 {
 
@@ -24,7 +24,8 @@ namespace CourseProject4 {
 		Switchtask(void)
 		{
 			InitializeComponent();
-			char* username = loginStr;
+
+			char* username = LoginUser;
 			label1->Text = gcnew String(username);
 		}
 

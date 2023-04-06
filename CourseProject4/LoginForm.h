@@ -3,9 +3,13 @@
 #include <string.h>
 #include <direct.h>
 #include "InfoForm.h"
+#include <cstring>
 
 #pragma once
 #include "RegisterForm.h"
+
+extern char LoginUser[64];
+
 
 namespace CourseProject4 {
 	
@@ -53,7 +57,7 @@ namespace CourseProject4 {
 
 	private: System::Windows::Forms::Button^ LoginNextBtn;
 
-	public: String^ LoginBoxUsername;
+	private: String^ LoginBoxUsername;
 	private: String^ LoginBoxPassword;
 
 	protected:
@@ -292,6 +296,12 @@ namespace CourseProject4 {
 
 			System::String^ loginStr = gcnew System::String(login);
 			System::String^ passwordStr = gcnew System::String(password);
+			int i;
+			for (i=0; i < loginStr[i]!='\0'; i++) {
+				LoginUser[i] = loginStr[i];
+			}
+			
+			LoginUser[i] = '\0';
 
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
 				this->Hide();
