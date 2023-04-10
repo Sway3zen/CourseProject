@@ -6,17 +6,16 @@
 #include <cstring>
 #include <stdbool.h>
 #include <Windows.h>
-#include <msclr/marshal.h>
-#include <msclr/marshal_cppstd.h>
-
 
 #pragma once
 #include "RegisterForm.h"
 
-const char* convertString(System::String^ str) {
-	std::string stdStr = msclr::interop::marshal_as<std::string>(str);
-	return stdStr.c_str();
-}
+
+
+//const char* convertString(System::String^ str) {
+//	std::string stdStr = msclr::interop::marshal_as<std::string>(str);
+//	return stdStr.c_str();
+//}
 
 //void saveToJsonFile(const char* value) {
 //	cJSON* root = cJSON_CreateObject();
@@ -38,19 +37,26 @@ const char* convertString(System::String^ str) {
 //	cJSON_Delete(root);
 //}
 
-void saveToJsonFile(const char* value) {
-	json_t* root = json_object();
 
-	json_object_set_new(root, "login", json_string(value));
-
-	char file_name[] = "/tmp/current.json";
-
-	FILE* fp = fopen(file_name, "w");
-	fprintf(fp, "%s", json_dumps(root, JSON_INDENT(4)));
-	fclose(fp);
-
-	json_decref(root);
-}
+//void saveToJsonFile(const char* value) {
+//	json_t* root = json_object();
+//
+//	json_object_set_new(root, "login", json_string(value));
+//
+//	char* temp_path = getenv("TEMP");
+//	char* folder_path = "\\Testify\\Current info\\Current.json";
+//	char file_name[255];
+//
+//	sprintf(file_name, "%s%s", temp_path, folder_path);
+//
+//	mkdir(temp_path);
+//
+//	FILE* fp = fopen(file_name, "w");
+//	fprintf(fp, "%s", json_dumps(root, JSON_INDENT(2) | JSON_SORT_KEYS));
+//	fclose(fp);
+//
+//	json_decref(root);
+//}
 
 namespace CourseProject4 {
 	
@@ -301,7 +307,26 @@ namespace CourseProject4 {
 
 		}
 #pragma endregion
-		
+
+
+		void SaveToFile(String^ value) {
+			char* temp_path = getenv("TEMP");
+			char* folder_path = "\\Testify\\Current info\\Current.bin";
+			char file_name[255];
+			char value_char[255];
+
+			const wchar_t* value_wchar = value->DataPtr;
+
+			size_t i;
+			wcstombs_s(&i, value_char, 255, value_wchar, 255);
+
+			sprintf(file_name, "%s%s", temp_path, folder_path);
+			mkdir(temp_path);
+			FILE* fp = fopen(file_name, "wb");
+			fprintf(fp, "Login:%s", value_char);
+			fclose(fp);
+		}
+
 	private: System::Void LoginNextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		LoginBoxUsername = System::Convert::ToString(LoginTextBoxLogin->Text);
 		LoginBoxPassword = System::Convert::ToString(LoginTextBoxPassword->Text);
@@ -338,8 +363,7 @@ namespace CourseProject4 {
 			System::String^ passwordStr = gcnew System::String(password);
 
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
-				const char* LoginChar = convertString(loginStr);
-				saveToJsonFile(LoginChar);
+				SaveToFile(loginStr);
 				this->Hide();
 
 				InfoForm^ infoForm = gcnew InfoForm();
