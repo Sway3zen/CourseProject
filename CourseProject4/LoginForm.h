@@ -313,17 +313,12 @@ namespace CourseProject4 {
 			char* temp_path = getenv("TEMP");
 			char* folder_path = "\\Testify\\Current info\\Current.bin";
 			char file_name[255];
-			char value_char[255];
-
-			const wchar_t* value_wchar = value->DataPtr;
-
-			size_t i;
-			wcstombs_s(&i, value_char, 255, value_wchar, 255);
 
 			sprintf(file_name, "%s%s", temp_path, folder_path);
 			mkdir(temp_path);
 			FILE* fp = fopen(file_name, "wb");
-			fprintf(fp, "Login:%s", value_char);
+			value = System::Convert::ToString(value);
+			fprintf(fp, "Login:%s", value);
 			fclose(fp);
 		}
 
@@ -363,7 +358,7 @@ namespace CourseProject4 {
 			System::String^ passwordStr = gcnew System::String(password);
 
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
-				SaveToFile(loginStr);
+				SaveToFile(LoginBoxUsername);
 				this->Hide();
 
 				InfoForm^ infoForm = gcnew InfoForm();
