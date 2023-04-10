@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Dell\Documents\GitHub\CourseProject\CourseProject4\cjson\build\CMakeFiles\8906ea00874e3b2b9e6c95c9b10273a0\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{853F9D51-89B1-3C1A-950D-9C7D2A4B4D26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

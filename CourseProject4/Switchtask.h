@@ -61,7 +61,7 @@ namespace CourseProject4 {
 			this->LoginAuthor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(236)),
 				static_cast<System::Int32>(static_cast<System::Byte>(236)));
 			this->LoginAuthor->Cursor = System::Windows::Forms::Cursors::Default;
-			this->LoginAuthor->Font = (gcnew System::Drawing::Font(L"Roboto", 14));
+			this->LoginAuthor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
 			this->LoginAuthor->Location = System::Drawing::Point(0, 621);
 			this->LoginAuthor->Name = L"LoginAuthor";
 			this->LoginAuthor->Size = System::Drawing::Size(987, 40);
@@ -72,12 +72,12 @@ namespace CourseProject4 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Roboto", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::White;
 			this->label1->Location = System::Drawing::Point(741, 37);
-			this->label1->Name = L"username";
-			this->label1->Size = System::Drawing::Size(107, 25);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(110, 25);
 			this->label1->TabIndex = 3;
 			this->label1->Text = L"Username";
 			// 
@@ -94,6 +94,7 @@ namespace CourseProject4 {
 			this->Name = L"Switchtask";
 			this->ShowIcon = false;
 			this->Text = L"Switchtask";
+			this->Load += gcnew System::EventHandler(this, &Switchtask::Switchtask_Load_1);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -101,6 +102,8 @@ namespace CourseProject4 {
 	private: System::Void Switchtask_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 #pragma endregion
+	private: System::Void Switchtask_Load_1(System::Object^ sender, System::EventArgs^ e) {
+	}
 	};
 
 

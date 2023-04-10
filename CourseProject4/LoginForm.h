@@ -5,15 +5,37 @@
 #include "InfoForm.h"
 #include <cstring>
 #include <stdbool.h>
+#include "cjson/cJSON.h"
+#include <Windows.h>
+#include <msclr/marshal.h>
+#include <msclr/marshal_cppstd.h>
 
 #pragma once
 #include "RegisterForm.h"
 
-bool saveToJsonFile(const char* filename, const char* value) {
-	FILE* fp = fopen(filename, "w");
+const char* convertString(System::String^ str) {
+	std::string stdStr = msclr::interop::marshal_as<std::string>(str);
+	return stdStr.c_str();
+}
 
-	fwrite()
-	
+void saveToJsonFile(const char* value) {
+	cJSON* root = cJSON_CreateObject();
+
+	cJSON_AddItemToObject(root, "login", cJSON_CreateString(value));
+
+	char* temp_path = getenv("TEMP");
+	char* folder_path = "\\Testify\\Current info\\Current.json";
+	char file_name[255];
+
+	sprintf(file_name, "%s%s", temp_path, folder_path);
+
+	_mkdir(temp_path);
+
+	FILE* fp = fopen(file_name, "w");
+	fprintf(fp, "%s", cJSON_Print(root));
+	fclose(fp);
+
+	cJSON_Delete(root);
 }
 
 namespace CourseProject4 {
@@ -24,7 +46,7 @@ namespace CourseProject4 {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
-	using namespace System::Drawing;;
+	using namespace System::Drawing;
 
 	/// <summary>
 	/// Summary for LoginForm
@@ -128,7 +150,7 @@ namespace CourseProject4 {
 			this->LoginAuthor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(236)),
 				static_cast<System::Int32>(static_cast<System::Byte>(236)));
 			this->LoginAuthor->Cursor = System::Windows::Forms::Cursors::Default;
-			this->LoginAuthor->Font = (gcnew System::Drawing::Font(L"Roboto", 14));
+			this->LoginAuthor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
 			this->LoginAuthor->Location = System::Drawing::Point(0, 463);
 			this->LoginAuthor->Name = L"LoginAuthor";
 			this->LoginAuthor->Size = System::Drawing::Size(400, 40);
@@ -142,18 +164,18 @@ namespace CourseProject4 {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->LoginSignIn->AutoSize = true;
-			this->LoginSignIn->Font = (gcnew System::Drawing::Font(L"Roboto", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->LoginSignIn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->LoginSignIn->ForeColor = System::Drawing::Color::White;
 			this->LoginSignIn->Location = System::Drawing::Point(140, 50);
 			this->LoginSignIn->Name = L"LoginSignIn";
-			this->LoginSignIn->Size = System::Drawing::Size(120, 58);
+			this->LoginSignIn->Size = System::Drawing::Size(118, 55);
 			this->LoginSignIn->TabIndex = 1;
 			this->LoginSignIn->Text = L"Âõiä";
 			// 
 			// Loginlogin
 			// 
-			this->Loginlogin->Font = (gcnew System::Drawing::Font(L"Roboto", 10.25F));
+			this->Loginlogin->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.25F));
 			this->Loginlogin->ForeColor = System::Drawing::Color::White;
 			this->Loginlogin->Location = System::Drawing::Point(97, 135);
 			this->Loginlogin->Name = L"Loginlogin";
@@ -169,19 +191,19 @@ namespace CourseProject4 {
 			this->LoginTextBoxLogin->BackColor = System::Drawing::Color::White;
 			this->LoginTextBoxLogin->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->LoginTextBoxLogin->Cursor = System::Windows::Forms::Cursors::IBeam;
-			this->LoginTextBoxLogin->Font = (gcnew System::Drawing::Font(L"Roboto", 12.25F));
+			this->LoginTextBoxLogin->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->LoginTextBoxLogin->Location = System::Drawing::Point(100, 154);
 			this->LoginTextBoxLogin->Margin = System::Windows::Forms::Padding(10, 3, 3, 3);
 			this->LoginTextBoxLogin->MaxLength = 64;
 			this->LoginTextBoxLogin->Name = L"LoginTextBoxLogin";
-			this->LoginTextBoxLogin->Size = System::Drawing::Size(200, 20);
+			this->LoginTextBoxLogin->Size = System::Drawing::Size(200, 19);
 			this->LoginTextBoxLogin->TabIndex = 3;
 			this->LoginTextBoxLogin->WordWrap = false;
 			// 
 			// LoginPassword
 			// 
 			this->LoginPassword->BackColor = System::Drawing::Color::Transparent;
-			this->LoginPassword->Font = (gcnew System::Drawing::Font(L"Roboto", 10.25F));
+			this->LoginPassword->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.25F));
 			this->LoginPassword->ForeColor = System::Drawing::Color::White;
 			this->LoginPassword->Location = System::Drawing::Point(97, 205);
 			this->LoginPassword->Name = L"LoginPassword";
@@ -197,12 +219,12 @@ namespace CourseProject4 {
 			this->LoginTextBoxPassword->BackColor = System::Drawing::Color::White;
 			this->LoginTextBoxPassword->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->LoginTextBoxPassword->Cursor = System::Windows::Forms::Cursors::IBeam;
-			this->LoginTextBoxPassword->Font = (gcnew System::Drawing::Font(L"Roboto", 12.25F));
+			this->LoginTextBoxPassword->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->LoginTextBoxPassword->Location = System::Drawing::Point(100, 221);
 			this->LoginTextBoxPassword->Margin = System::Windows::Forms::Padding(10, 3, 3, 3);
 			this->LoginTextBoxPassword->MaxLength = 128;
 			this->LoginTextBoxPassword->Name = L"LoginTextBoxPassword";
-			this->LoginTextBoxPassword->Size = System::Drawing::Size(200, 20);
+			this->LoginTextBoxPassword->Size = System::Drawing::Size(200, 19);
 			this->LoginTextBoxPassword->TabIndex = 3;
 			this->LoginTextBoxPassword->WordWrap = false;
 			// 
@@ -213,23 +235,22 @@ namespace CourseProject4 {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->LoginRegisterBtn->BackColor = System::Drawing::Color::Transparent;
 			this->LoginRegisterBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->LoginRegisterBtn->Font = (gcnew System::Drawing::Font(L"Roboto", 10.25F));
+			this->LoginRegisterBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.25F));
 			this->LoginRegisterBtn->ForeColor = System::Drawing::Color::White;
 			this->LoginRegisterBtn->Location = System::Drawing::Point(238, 244);
 			this->LoginRegisterBtn->Name = L"LoginRegisterBtn";
-			this->LoginRegisterBtn->Size = System::Drawing::Size(71, 16);
+			this->LoginRegisterBtn->Size = System::Drawing::Size(71, 24);
 			this->LoginRegisterBtn->TabIndex = 4;
 			this->LoginRegisterBtn->Text = L"Register";
 			this->LoginRegisterBtn->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			this->LoginRegisterBtn->Click += gcnew System::EventHandler(this, &LoginForm::LoginRegisterBtn_Click);
-			this->LoginRegisterBtn->Select();
 			// 
 			// LoginNextBtn
 			// 
 			this->LoginNextBtn->BackColor = System::Drawing::Color::White;
 			this->LoginNextBtn->Cursor = System::Windows::Forms::Cursors::Default;
 			this->LoginNextBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->LoginNextBtn->Font = (gcnew System::Drawing::Font(L"Roboto", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->LoginNextBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->LoginNextBtn->Location = System::Drawing::Point(125, 320);
 			this->LoginNextBtn->Name = L"LoginNextBtn";
@@ -262,7 +283,7 @@ namespace CourseProject4 {
 			this->Text = L"Testify";
 			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			this->ResumeLayout(false);
-			this->PerformLayout();		
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -303,6 +324,8 @@ namespace CourseProject4 {
 			System::String^ passwordStr = gcnew System::String(password);
 
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
+				const char* LoginChar = convertString(loginStr);
+				saveToJsonFile(LoginChar);
 				this->Hide();
 
 				InfoForm^ infoForm = gcnew InfoForm();
