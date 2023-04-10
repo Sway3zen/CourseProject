@@ -5,10 +5,10 @@
 #include "InfoForm.h"
 #include <cstring>
 #include <stdbool.h>
-#include "cjson/cJSON.h"
 #include <Windows.h>
 #include <msclr/marshal.h>
 #include <msclr/marshal_cppstd.h>
+
 
 #pragma once
 #include "RegisterForm.h"
@@ -18,24 +18,38 @@ const char* convertString(System::String^ str) {
 	return stdStr.c_str();
 }
 
+//void saveToJsonFile(const char* value) {
+//	cJSON* root = cJSON_CreateObject();
+//
+//	cJSON_AddItemToObject(root, "login", cJSON_CreateString(value));
+//
+//	char* temp_path = getenv("TEMP");
+//	char* folder_path = "\\Testify\\Current info\\Current.json";
+//	char file_name[255];
+//
+//	sprintf(file_name, "%s%s", temp_path, folder_path);
+//
+//	_mkdir(temp_path);
+//
+//	FILE* fp = fopen(file_name, "w");
+//	fprintf(fp, "%s", cJSON_Print(root));
+//	fclose(fp);
+//
+//	cJSON_Delete(root);
+//}
+
 void saveToJsonFile(const char* value) {
-	cJSON* root = cJSON_CreateObject();
+	json_t* root = json_object();
 
-	cJSON_AddItemToObject(root, "login", cJSON_CreateString(value));
+	json_object_set_new(root, "login", json_string(value));
 
-	char* temp_path = getenv("TEMP");
-	char* folder_path = "\\Testify\\Current info\\Current.json";
-	char file_name[255];
-
-	sprintf(file_name, "%s%s", temp_path, folder_path);
-
-	_mkdir(temp_path);
+	char file_name[] = "/tmp/current.json";
 
 	FILE* fp = fopen(file_name, "w");
-	fprintf(fp, "%s", cJSON_Print(root));
+	fprintf(fp, "%s", json_dumps(root, JSON_INDENT(4)));
 	fclose(fp);
 
-	cJSON_Delete(root);
+	json_decref(root);
 }
 
 namespace CourseProject4 {
