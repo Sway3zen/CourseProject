@@ -83,8 +83,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -129,6 +128,7 @@
     <ClCompile Include="Switchtask.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dlls\GetUsername.h" />
     <ClInclude Include="InfoForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

@@ -6,6 +6,7 @@
 #include <cstring>
 #include <stdbool.h>
 #include <Windows.h>
+#include <vcclr.h>
 
 #pragma once
 #include "RegisterForm.h"
@@ -67,6 +68,7 @@ namespace CourseProject4 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Runtime::InteropServices;
 
 	/// <summary>
 	/// Summary for LoginForm
@@ -309,16 +311,16 @@ namespace CourseProject4 {
 #pragma endregion
 
 
-		void SaveToFile(String^ value) {
+		void SaveToFile(char* value) {
 			char* temp_path = getenv("TEMP");
-			char* folder_path = "\\Testify\\Current info\\Current.bin";
+			char* folder_path2 = "\\Testify\\Current info\\Current.bin";
 			char file_name[255];
 
-			sprintf(file_name, "%s%s", temp_path, folder_path);
-			mkdir(temp_path);
+			sprintf(file_name, "%s%s", temp_path, folder_path2);
+
 			FILE* fp = fopen(file_name, "wb");
-			value = System::Convert::ToString(value);
-			fprintf(fp, "Login:%s", value);
+			//fprintf(fp, "Login:%s", str2);
+			fwrite(value, sizeof(char), strlen(value), fp);
 			fclose(fp);
 		}
 
@@ -358,7 +360,8 @@ namespace CourseProject4 {
 			System::String^ passwordStr = gcnew System::String(password);
 
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
-				SaveToFile(LoginBoxUsername);
+				char* str2 = (char*)(void*)Marshal::StringToHGlobalAnsi(loginStr);
+				SaveToFile(str2);
 				this->Hide();
 
 				InfoForm^ infoForm = gcnew InfoForm();
@@ -377,6 +380,12 @@ private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ 
 	sprintf(file_name, "%s\\Testify", temp_path);
 
 	int result = mkdir(file_name);
+
+	char* folder_path2 = "\\Testify\\Current info";
+	char file_name2[255];
+
+	sprintf(file_name2, "%s%s", temp_path, folder_path2);
+	int result2 = mkdir(file_name2);
 
 }
 private: System::Void LoginRegisterBtn_Click(System::Object^ sender, System::EventArgs^ e) {

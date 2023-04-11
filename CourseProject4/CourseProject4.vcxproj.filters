@@ -41,5 +41,8 @@
     <ClInclude Include="Switchtask.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="dlls\GetUsername.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

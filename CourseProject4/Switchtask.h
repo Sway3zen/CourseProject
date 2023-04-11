@@ -37,7 +37,10 @@ namespace CourseProject4 {
 	private: System::Windows::Forms::Label^ LoginAuthor;
 	protected:
 	private: System::Windows::Forms::Label^ label1;
-	
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
+
 
 	private:
 		/// <summary>
@@ -54,6 +57,9 @@ namespace CourseProject4 {
 		{
 			this->LoginAuthor = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// LoginAuthor
@@ -81,6 +87,42 @@ namespace CourseProject4 {
 			this->label1->TabIndex = 3;
 			this->label1->Text = L"Username";
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Roboto", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label2->ForeColor = System::Drawing::Color::White;
+			this->label2->Location = System::Drawing::Point(424, 236);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(152, 25);
+			this->label2->TabIndex = 4;
+			this->label2->Text = L"Перелік тестів";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Roboto", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label3->ForeColor = System::Drawing::Color::White;
+			this->label3->Location = System::Drawing::Point(424, 273);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(152, 25);
+			this->label3->TabIndex = 5;
+			this->label3->Text = L"Створити тест";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Roboto", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label4->ForeColor = System::Drawing::Color::White;
+			this->label4->Location = System::Drawing::Point(407, 315);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(185, 25);
+			this->label4->TabIndex = 6;
+			this->label4->Text = L"Результати тестів";
+			// 
 			// Switchtask
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -88,6 +130,9 @@ namespace CourseProject4 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->ClientSize = System::Drawing::Size(984, 661);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->LoginAuthor);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
@@ -99,13 +144,35 @@ namespace CourseProject4 {
 			this->PerformLayout();
 
 		}
-	private: System::Void Switchtask_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
+		char* GetUsername() {
+			char* temp_path = getenv("TEMP");
+			char* folder_path2 = "\\Testify\\Current info\\Current.bin";
+			char file_name[255];
+
+			sprintf(file_name, "%s%s", temp_path, folder_path2);
+
+			char* login = (char*)malloc(64);
+			FILE* fp = fopen(file_name, "rb");
+			char line[256];
+			while (fgets(line, sizeof(line), fp)) {
+				if (strstr(line, "") != NULL) {
+					sscanf(line, "%s", login);
+					break;
+				}
+			}
+			fclose(fp);
+
+			return login;
+		}
+
 #pragma endregion
+
 	private: System::Void Switchtask_Load_1(System::Object^ sender, System::EventArgs^ e) {
+		char* username = GetUsername();
+		this->label1->Text = gcnew String(username);
 	}
 	};
 
 
 
-	}
+}
