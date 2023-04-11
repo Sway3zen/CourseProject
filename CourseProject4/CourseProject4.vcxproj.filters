@@ -27,6 +27,9 @@
     <ClCompile Include="Switchtask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CreateTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RegisterForm.h">
@@ -43,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="dlls\GetUsername.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateTest.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

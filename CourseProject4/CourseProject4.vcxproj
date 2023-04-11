@@ -122,12 +122,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CreateTest.cpp" />
     <ClCompile Include="InfoForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="Switchtask.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CreateTest.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="dlls\GetUsername.h" />
     <ClInclude Include="InfoForm.h">
       <FileType>CppForm</FileType>
