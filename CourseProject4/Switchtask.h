@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "CreateTest.h"
 #pragma once
 
 
@@ -110,6 +111,7 @@ namespace CourseProject4 {
 			this->label3->Size = System::Drawing::Size(152, 25);
 			this->label3->TabIndex = 5;
 			this->label3->Text = L"Створити тест";
+			this->label3->Click += gcnew System::EventHandler(this, &Switchtask::label3_Click);
 			// 
 			// label4
 			// 
@@ -171,7 +173,13 @@ namespace CourseProject4 {
 		char* username = GetUsername();
 		this->label1->Text = gcnew String(username);
 	}
-	};
+	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		CreateTest^ createTest = gcnew CreateTest();
+		createTest->ShowDialog();
+		this->Show();
+	}
+};
 
 
 

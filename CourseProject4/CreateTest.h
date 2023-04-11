@@ -34,6 +34,8 @@ namespace CourseProject4 {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Label^ LoginAuthor;
+	protected:
 
 	private:
 		/// <summary>
@@ -48,11 +50,35 @@ namespace CourseProject4 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"CreateTest";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->LoginAuthor = (gcnew System::Windows::Forms::Label());
+			this->SuspendLayout();
+			// 
+			// LoginAuthor
+			// 
+			this->LoginAuthor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(236)));
+			this->LoginAuthor->Cursor = System::Windows::Forms::Cursors::Default;
+			this->LoginAuthor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
+			this->LoginAuthor->Location = System::Drawing::Point(-7, 621);
+			this->LoginAuthor->Name = L"LoginAuthor";
+			this->LoginAuthor->Size = System::Drawing::Size(1000, 40);
+			this->LoginAuthor->TabIndex = 3;
+			this->LoginAuthor->Text = L"© Swayze Inc.";
+			this->LoginAuthor->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// CreateTest
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
+				static_cast<System::Int32>(static_cast<System::Byte>(40)));
+			this->ClientSize = System::Drawing::Size(984, 661);
+			this->Controls->Add(this->LoginAuthor);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Name = L"CreateTest";
+			this->Text = L"CreateTest";
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
 	};
