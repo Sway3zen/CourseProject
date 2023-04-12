@@ -41,9 +41,11 @@ namespace CourseProject4 {
 		}
 	private: System::Windows::Forms::Label^ LoginAuthor;
 	private: System::Windows::Forms::VScrollBar^ ScrollBar1;
+	private: System::Windows::Forms::TextBox^ Question;
 
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::Panel^ panel1;
+
+	private: System::Windows::Forms::Panel^ container;
+
 	private: System::Windows::Forms::RadioButton^ radioButton5;
 	private: System::Windows::Forms::RadioButton^ radioButton4;
 	private: System::Windows::Forms::RadioButton^ radioButton3;
@@ -80,8 +82,10 @@ namespace CourseProject4 {
 		{
 			this->LoginAuthor = (gcnew System::Windows::Forms::Label());
 			this->ScrollBar1 = (gcnew System::Windows::Forms::VScrollBar());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->Question = (gcnew System::Windows::Forms::TextBox());
+			this->container = (gcnew System::Windows::Forms::Panel());
+			this->RightAnswer = (gcnew System::Windows::Forms::TextBox());
+			this->RightAnswer_Text = (gcnew System::Windows::Forms::Label());
 			this->textanswer5 = (gcnew System::Windows::Forms::TextBox());
 			this->textanswer4 = (gcnew System::Windows::Forms::TextBox());
 			this->textanswer3 = (gcnew System::Windows::Forms::TextBox());
@@ -98,9 +102,7 @@ namespace CourseProject4 {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->RightAnswer_Text = (gcnew System::Windows::Forms::Label());
-			this->RightAnswer = (gcnew System::Windows::Forms::TextBox());
-			this->panel1->SuspendLayout();
+			this->container->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// LoginAuthor
@@ -126,34 +128,52 @@ namespace CourseProject4 {
 			this->ScrollBar1->SmallChange = 40;
 			this->ScrollBar1->TabIndex = 4;
 			// 
-			// textBox1
+			// Question
 			// 
-			this->textBox1->Location = System::Drawing::Point(0, 0);
-			this->textBox1->Multiline = true;
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(546, 100);
-			this->textBox1->TabIndex = 5;
+			this->Question->Location = System::Drawing::Point(0, 0);
+			this->Question->Multiline = true;
+			this->Question->Name = L"Question";
+			this->Question->Size = System::Drawing::Size(546, 100);
+			this->Question->TabIndex = 5;
 			// 
-			// panel1
+			// container
 			// 
-			this->panel1->AutoScroll = true;
-			this->panel1->Controls->Add(this->RightAnswer);
-			this->panel1->Controls->Add(this->RightAnswer_Text);
-			this->panel1->Controls->Add(this->textanswer5);
-			this->panel1->Controls->Add(this->textanswer4);
-			this->panel1->Controls->Add(this->textanswer3);
-			this->panel1->Controls->Add(this->textanswer2);
-			this->panel1->Controls->Add(this->textanswer1);
-			this->panel1->Controls->Add(this->radioButton5);
-			this->panel1->Controls->Add(this->radioButton4);
-			this->panel1->Controls->Add(this->radioButton3);
-			this->panel1->Controls->Add(this->radioButton2);
-			this->panel1->Controls->Add(this->radioButton1);
-			this->panel1->Controls->Add(this->textBox1);
-			this->panel1->Location = System::Drawing::Point(227, 44);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(546, 215);
-			this->panel1->TabIndex = 6;
+			this->container->AutoScroll = true;
+			this->container->Controls->Add(this->RightAnswer);
+			this->container->Controls->Add(this->RightAnswer_Text);
+			this->container->Controls->Add(this->textanswer5);
+			this->container->Controls->Add(this->textanswer4);
+			this->container->Controls->Add(this->textanswer3);
+			this->container->Controls->Add(this->textanswer2);
+			this->container->Controls->Add(this->textanswer1);
+			this->container->Controls->Add(this->radioButton5);
+			this->container->Controls->Add(this->radioButton4);
+			this->container->Controls->Add(this->radioButton3);
+			this->container->Controls->Add(this->radioButton2);
+			this->container->Controls->Add(this->radioButton1);
+			this->container->Controls->Add(this->Question);
+			this->container->Location = System::Drawing::Point(227, 44);
+			this->container->Name = L"container";
+			this->container->Size = System::Drawing::Size(546, 215);
+			this->container->TabIndex = 6;
+			// 
+			// RightAnswer
+			// 
+			this->RightAnswer->Location = System::Drawing::Point(396, 170);
+			this->RightAnswer->Name = L"RightAnswer";
+			this->RightAnswer->Size = System::Drawing::Size(100, 20);
+			this->RightAnswer->TabIndex = 17;
+			// 
+			// RightAnswer_Text
+			// 
+			this->RightAnswer_Text->AutoSize = true;
+			this->RightAnswer_Text->Font = (gcnew System::Drawing::Font(L"Roboto", 9.25F));
+			this->RightAnswer_Text->ForeColor = System::Drawing::Color::White;
+			this->RightAnswer_Text->Location = System::Drawing::Point(353, 152);
+			this->RightAnswer_Text->Name = L"RightAnswer_Text";
+			this->RightAnswer_Text->Size = System::Drawing::Size(180, 15);
+			this->RightAnswer_Text->TabIndex = 16;
+			this->RightAnswer_Text->Text = L"Номер правильної відповіді:";
 			// 
 			// textanswer5
 			// 
@@ -304,24 +324,6 @@ namespace CourseProject4 {
 			this->label2->TabIndex = 10;
 			this->label2->Text = L"Введіть назву тесту:";
 			// 
-			// RightAnswer_Text
-			// 
-			this->RightAnswer_Text->AutoSize = true;
-			this->RightAnswer_Text->Font = (gcnew System::Drawing::Font(L"Roboto", 9.25F));
-			this->RightAnswer_Text->ForeColor = System::Drawing::Color::White;
-			this->RightAnswer_Text->Location = System::Drawing::Point(353, 152);
-			this->RightAnswer_Text->Name = L"RightAnswer_Text";
-			this->RightAnswer_Text->Size = System::Drawing::Size(180, 15);
-			this->RightAnswer_Text->TabIndex = 16;
-			this->RightAnswer_Text->Text = L"Номер правильної відповіді:";
-			// 
-			// RightAnswer
-			// 
-			this->RightAnswer->Location = System::Drawing::Point(396, 170);
-			this->RightAnswer->Name = L"RightAnswer";
-			this->RightAnswer->Size = System::Drawing::Size(100, 20);
-			this->RightAnswer->TabIndex = 17;
-			// 
 			// CreateTest
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -335,15 +337,15 @@ namespace CourseProject4 {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->container);
 			this->Controls->Add(this->ScrollBar1);
 			this->Controls->Add(this->LoginAuthor);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"CreateTest";
 			this->Text = L"CreateTest";
 			this->Load += gcnew System::EventHandler(this, &CreateTest::CreateTest_Load);
-			this->panel1->ResumeLayout(false);
-			this->panel1->PerformLayout();
+			this->container->ResumeLayout(false);
+			this->container->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -360,6 +362,17 @@ namespace CourseProject4 {
 
 		private: void CreateQuestions(){
 			for (int i = 0; i < count_questions; i++) {
+				char question_number[255];
+				sprintf(question_number, "Question_%d", i);
+				System::Windows::Forms::TextBox^ question_number;
+				this->question_number = (gcnew System::Windows::Forms::TextBox());
+				PanelLoc += 150;
+				this->question_number->Location = System::Drawing::Point(0, 0);
+				this->question_number->Multiline = true;
+				this->question_number->Name = question_number;
+				this->question_number->Size = System::Drawing::Size(546, 100);
+				this->question_number->TabIndex = 5;
+				this->Controls->Add(this->question_number);
 			}
 
 		}
@@ -367,13 +380,13 @@ namespace CourseProject4 {
 #pragma endregion
 private: System::Void ScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e)
 {
-	panel1->Top = -ScrollBar1->Value;
+	container->Top = -ScrollBar1->Value;
 }
 
 	private: System::Void CreateTest_Load(System::Object^ sender, System::EventArgs^ e) {
 		TextBox^ textBox1 = gcnew TextBox();
-		panel1->Controls->Add(textBox1);
-		this->Controls->Add(panel1);
+		container->Controls->Add(textBox1);
+		this->Controls->Add(container);
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	count_questions = System::Convert::ToInt32(textBox2->Text);
