@@ -351,28 +351,42 @@ namespace CourseProject4 {
 
 		}
 
-		public: int count_questions = 0;
+		public: int count_questions;
 
 		public: int i = 0;
 		public: int j = 0;
 
 		public: int TextBoxLoc = 0;
 		public: int AnswerLoc = 0;
-		public: int PanelLoc = 0;
+		public: int PanelLoc = 300;
+		private: array<TextBox^>^ Questions = gcnew array<TextBox^>(6);
+		private: array<Panel^>^ Containers_arr = gcnew array<Panel^>(6);
 
 		private: void CreateQuestions(){
 			for (int i = 0; i < count_questions; i++) {
-				char question_number[255];
-				sprintf(question_number, "Question_%d", i);
-				System::Windows::Forms::TextBox^ question_number;
-				this->question_number = (gcnew System::Windows::Forms::TextBox());
-				PanelLoc += 150;
-				this->question_number->Location = System::Drawing::Point(0, 0);
-				this->question_number->Multiline = true;
-				this->question_number->Name = question_number;
-				this->question_number->Size = System::Drawing::Size(546, 100);
-				this->question_number->TabIndex = 5;
-				this->Controls->Add(this->question_number);
+				TextBox^ textBox = gcnew TextBox();
+				textBox->Location = System::Drawing::Point(0, TextBoxLoc);
+				textBox->Multiline = true;
+				textBox->Size = System::Drawing::Size(546, 100);
+				this->Controls->Add(textBox);
+				Questions[i] = textBox;
+
+				Panel^ containers = gcnew Panel();
+				containers->Location = System::Drawing::Point(227, PanelLoc);
+				containers->Size = System::Drawing::Size(546, 215);
+				containers->Controls->Add(textBox);
+				this->Controls->Add(containers);
+				PanelLoc += 50;
+
+				/*			this->container->Location = System::Drawing::Point(227, 44);
+			this->container->Name = L"container";
+			this->container->Size = System::Drawing::Size(546, 215);*/
+
+					/*this->Question->Location = System::Drawing::Point(0, 0);
+				this->Question->Multiline = true;
+				this->Question->Name = L"Question";
+				this->Question->Size = System::Drawing::Size(546, 100);
+				this->Question->TabIndex = 5;*/
 			}
 
 		}
@@ -392,6 +406,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	count_questions = System::Convert::ToInt32(textBox2->Text);
 	if (count_questions < 5) {
 		System::Windows::Forms::MessageBox::Show("Кількість запитань повина бути більше чим 5.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+	}
+	else {
+		CreateQuestions();
 	}
 }
 };
