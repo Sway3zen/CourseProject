@@ -350,66 +350,57 @@ namespace CourseProject4 {
 			this->PerformLayout();
 
 		}
+public:
+	int count_questions;
+	array<TextBox^>^ Questions;
+	array<Panel^>^ Containers_arr;
+void CreateQuestions() {
+    Questions = gcnew array<TextBox^>(count_questions);
+    Containers_arr = gcnew array<Panel^>(count_questions);
 
-		public: int count_questions;
+    for (int i = 0; i < count_questions; i++) {
+        TextBox^ textBox = gcnew TextBox();
+        textBox->Location = System::Drawing::Point(0, i * 50);
+        textBox->Multiline = true;
+        textBox->Size = System::Drawing::Size(546, 100);
+        this->Controls->Add(textBox);
+        Questions[i] = textBox;
 
-		public: int i = 0;
-		public: int j = 0;
+        Panel^ panel = gcnew Panel();
+        panel->Location = System::Drawing::Point(227, i * 265 + 44);
+        panel->Size = System::Drawing::Size(546, 215);
+        panel->Controls->Add(textBox);
+        Containers_arr[i] = panel;
+        this->Controls->Add(panel);
+    }
 
-		public: int TextBoxLoc = 0;
-		public: int AnswerLoc = 0;
-		public: int PanelLoc = 300;
-		private: array<TextBox^>^ Questions = gcnew array<TextBox^>(6);
-		private: array<Panel^>^ Containers_arr = gcnew array<Panel^>(6);
+}
 
-		private: void CreateQuestions(){
-			for (int i = 0; i < count_questions; i++) {
-				TextBox^ textBox = gcnew TextBox();
-				textBox->Location = System::Drawing::Point(0, TextBoxLoc);
-				textBox->Multiline = true;
-				textBox->Size = System::Drawing::Size(546, 100);
-				this->Controls->Add(textBox);
-				Questions[i] = textBox;
 
-				Panel^ containers = gcnew Panel();
-				containers->Location = System::Drawing::Point(227, PanelLoc);
-				containers->Size = System::Drawing::Size(546, 215);
-				containers->Controls->Add(textBox);
-				this->Controls->Add(containers);
-				PanelLoc += 50;
-
-				/*			this->container->Location = System::Drawing::Point(227, 44);
-			this->container->Name = L"container";
-			this->container->Size = System::Drawing::Size(546, 215);*/
-
-					/*this->Question->Location = System::Drawing::Point(0, 0);
-				this->Question->Multiline = true;
-				this->Question->Name = L"Question";
-				this->Question->Size = System::Drawing::Size(546, 100);
-				this->Question->TabIndex = 5;*/
-			}
-
+private:
+	System::Void ScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
+		for (int i = 0; i < count_questions; i++) {
+			Containers_arr[i]->Location = System::Drawing::Point(227, i * 265 + 44 - ScrollBar1->Value);
+			Containers_arr[i]->Size = System::Drawing::Size(546, 215);
+			Questions[i]->Size = System::Drawing::Size(546, 100);
 		}
+		ScrollBar1->Maximum = (count_questions) * 265;
 
-#pragma endregion
-private: System::Void ScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e)
-{
-	container->Top = -ScrollBar1->Value;
-}
+	}
 
-	private: System::Void CreateTest_Load(System::Object^ sender, System::EventArgs^ e) {
-		TextBox^ textBox1 = gcnew TextBox();
-		container->Controls->Add(textBox1);
-		this->Controls->Add(container);
+private:
+	System::Void CreateTest_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	count_questions = System::Convert::ToInt32(textBox2->Text);
-	if (count_questions < 5) {
-		System::Windows::Forms::MessageBox::Show("Кількість запитань повина бути більше чим 5.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+
+private:
+	System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		count_questions = System::Convert::ToInt32(textBox2->Text);
+		if (count_questions < 5) {
+			System::Windows::Forms::MessageBox::Show("Кількість запитань повина бути більше чим 5.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+		}
+		else {
+			CreateQuestions();
+		}
 	}
-	else {
-		CreateQuestions();
-	}
-}
 };
 }

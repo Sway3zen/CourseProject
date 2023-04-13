@@ -362,10 +362,10 @@ namespace CourseProject4 {
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
 				char* str2 = (char*)(void*)Marshal::StringToHGlobalAnsi(loginStr);
 				SaveToFile(str2);
-				this->Hide();
 
 				InfoForm^ infoForm = gcnew InfoForm();
 				infoForm->Show();
+				this->Hide();
 
 				//System::Windows::Forms::MessageBox::Show("Вхід", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 			}
