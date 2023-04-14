@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <direct.h>
 
 #pragma once
 
@@ -41,29 +42,30 @@ namespace CourseProject4 {
 		}
 	private: System::Windows::Forms::Label^ LoginAuthor;
 	private: System::Windows::Forms::VScrollBar^ ScrollBar1;
-	private: System::Windows::Forms::TextBox^ Question;
 
 
-	private: System::Windows::Forms::Panel^ container;
 
-	private: System::Windows::Forms::RadioButton^ radioButton5;
-	private: System::Windows::Forms::RadioButton^ radioButton4;
-	private: System::Windows::Forms::RadioButton^ radioButton3;
-	private: System::Windows::Forms::RadioButton^ radioButton2;
-	private: System::Windows::Forms::RadioButton^ radioButton1;
-	private: System::Windows::Forms::TextBox^ textanswer5;
-	private: System::Windows::Forms::TextBox^ textanswer4;
-	private: System::Windows::Forms::TextBox^ textanswer3;
-	private: System::Windows::Forms::TextBox^ textanswer2;
-	private: System::Windows::Forms::TextBox^ textanswer1;
+
+
+
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ RightAnswer;
-	private: System::Windows::Forms::Label^ RightAnswer_Text;
+
+
+
 
 	protected:
 
@@ -71,7 +73,7 @@ namespace CourseProject4 {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -82,27 +84,12 @@ namespace CourseProject4 {
 		{
 			this->LoginAuthor = (gcnew System::Windows::Forms::Label());
 			this->ScrollBar1 = (gcnew System::Windows::Forms::VScrollBar());
-			this->Question = (gcnew System::Windows::Forms::TextBox());
-			this->container = (gcnew System::Windows::Forms::Panel());
-			this->RightAnswer = (gcnew System::Windows::Forms::TextBox());
-			this->RightAnswer_Text = (gcnew System::Windows::Forms::Label());
-			this->textanswer5 = (gcnew System::Windows::Forms::TextBox());
-			this->textanswer4 = (gcnew System::Windows::Forms::TextBox());
-			this->textanswer3 = (gcnew System::Windows::Forms::TextBox());
-			this->textanswer2 = (gcnew System::Windows::Forms::TextBox());
-			this->textanswer1 = (gcnew System::Windows::Forms::TextBox());
-			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->container->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// LoginAuthor
@@ -122,148 +109,11 @@ namespace CourseProject4 {
 			// 
 			this->ScrollBar1->LargeChange = 40;
 			this->ScrollBar1->Location = System::Drawing::Point(967, -2);
-			this->ScrollBar1->Maximum = 3000;
+			this->ScrollBar1->Maximum = 1000;
 			this->ScrollBar1->Name = L"ScrollBar1";
 			this->ScrollBar1->Size = System::Drawing::Size(17, 623);
 			this->ScrollBar1->SmallChange = 40;
-			this->ScrollBar1->TabIndex = 4;
-			// 
-			// Question
-			// 
-			this->Question->Location = System::Drawing::Point(0, 0);
-			this->Question->Multiline = true;
-			this->Question->Name = L"Question";
-			this->Question->Size = System::Drawing::Size(546, 100);
-			this->Question->TabIndex = 5;
-			// 
-			// container
-			// 
-			this->container->AutoScroll = true;
-			this->container->Controls->Add(this->RightAnswer);
-			this->container->Controls->Add(this->RightAnswer_Text);
-			this->container->Controls->Add(this->textanswer5);
-			this->container->Controls->Add(this->textanswer4);
-			this->container->Controls->Add(this->textanswer3);
-			this->container->Controls->Add(this->textanswer2);
-			this->container->Controls->Add(this->textanswer1);
-			this->container->Controls->Add(this->radioButton5);
-			this->container->Controls->Add(this->radioButton4);
-			this->container->Controls->Add(this->radioButton3);
-			this->container->Controls->Add(this->radioButton2);
-			this->container->Controls->Add(this->radioButton1);
-			this->container->Controls->Add(this->Question);
-			this->container->Location = System::Drawing::Point(227, 44);
-			this->container->Name = L"container";
-			this->container->Size = System::Drawing::Size(546, 215);
-			this->container->TabIndex = 6;
-			// 
-			// RightAnswer
-			// 
-			this->RightAnswer->Location = System::Drawing::Point(396, 170);
-			this->RightAnswer->Name = L"RightAnswer";
-			this->RightAnswer->Size = System::Drawing::Size(100, 20);
-			this->RightAnswer->TabIndex = 17;
-			// 
-			// RightAnswer_Text
-			// 
-			this->RightAnswer_Text->AutoSize = true;
-			this->RightAnswer_Text->Font = (gcnew System::Drawing::Font(L"Roboto", 9.25F));
-			this->RightAnswer_Text->ForeColor = System::Drawing::Color::White;
-			this->RightAnswer_Text->Location = System::Drawing::Point(353, 152);
-			this->RightAnswer_Text->Name = L"RightAnswer_Text";
-			this->RightAnswer_Text->Size = System::Drawing::Size(180, 15);
-			this->RightAnswer_Text->TabIndex = 16;
-			this->RightAnswer_Text->Text = L"Номер правильної відповіді:";
-			// 
-			// textanswer5
-			// 
-			this->textanswer5->Location = System::Drawing::Point(396, 119);
-			this->textanswer5->Name = L"textanswer5";
-			this->textanswer5->Size = System::Drawing::Size(100, 20);
-			this->textanswer5->TabIndex = 15;
-			// 
-			// textanswer4
-			// 
-			this->textanswer4->Location = System::Drawing::Point(232, 152);
-			this->textanswer4->Name = L"textanswer4";
-			this->textanswer4->Size = System::Drawing::Size(100, 20);
-			this->textanswer4->TabIndex = 14;
-			// 
-			// textanswer3
-			// 
-			this->textanswer3->Location = System::Drawing::Point(232, 119);
-			this->textanswer3->Name = L"textanswer3";
-			this->textanswer3->Size = System::Drawing::Size(100, 20);
-			this->textanswer3->TabIndex = 13;
-			// 
-			// textanswer2
-			// 
-			this->textanswer2->Location = System::Drawing::Point(58, 155);
-			this->textanswer2->Name = L"textanswer2";
-			this->textanswer2->Size = System::Drawing::Size(100, 20);
-			this->textanswer2->TabIndex = 12;
-			// 
-			// textanswer1
-			// 
-			this->textanswer1->Location = System::Drawing::Point(58, 122);
-			this->textanswer1->Name = L"textanswer1";
-			this->textanswer1->Size = System::Drawing::Size(100, 20);
-			this->textanswer1->TabIndex = 11;
-			// 
-			// radioButton5
-			// 
-			this->radioButton5->AutoSize = true;
-			this->radioButton5->ForeColor = System::Drawing::Color::White;
-			this->radioButton5->Location = System::Drawing::Point(376, 122);
-			this->radioButton5->Name = L"radioButton5";
-			this->radioButton5->Size = System::Drawing::Size(14, 13);
-			this->radioButton5->TabIndex = 10;
-			this->radioButton5->TabStop = true;
-			this->radioButton5->UseVisualStyleBackColor = true;
-			// 
-			// radioButton4
-			// 
-			this->radioButton4->AutoSize = true;
-			this->radioButton4->ForeColor = System::Drawing::Color::White;
-			this->radioButton4->Location = System::Drawing::Point(212, 155);
-			this->radioButton4->Name = L"radioButton4";
-			this->radioButton4->Size = System::Drawing::Size(14, 13);
-			this->radioButton4->TabIndex = 9;
-			this->radioButton4->TabStop = true;
-			this->radioButton4->UseVisualStyleBackColor = true;
-			// 
-			// radioButton3
-			// 
-			this->radioButton3->AutoSize = true;
-			this->radioButton3->ForeColor = System::Drawing::Color::White;
-			this->radioButton3->Location = System::Drawing::Point(212, 122);
-			this->radioButton3->Name = L"radioButton3";
-			this->radioButton3->Size = System::Drawing::Size(14, 13);
-			this->radioButton3->TabIndex = 8;
-			this->radioButton3->TabStop = true;
-			this->radioButton3->UseVisualStyleBackColor = true;
-			// 
-			// radioButton2
-			// 
-			this->radioButton2->AutoSize = true;
-			this->radioButton2->ForeColor = System::Drawing::Color::White;
-			this->radioButton2->Location = System::Drawing::Point(37, 155);
-			this->radioButton2->Name = L"radioButton2";
-			this->radioButton2->Size = System::Drawing::Size(14, 13);
-			this->radioButton2->TabIndex = 7;
-			this->radioButton2->TabStop = true;
-			this->radioButton2->UseVisualStyleBackColor = true;
-			// 
-			// radioButton1
-			// 
-			this->radioButton1->AutoSize = true;
-			this->radioButton1->ForeColor = System::Drawing::Color::White;
-			this->radioButton1->Location = System::Drawing::Point(37, 122);
-			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(14, 13);
-			this->radioButton1->TabIndex = 6;
-			this->radioButton1->TabStop = true;
-			this->radioButton1->UseVisualStyleBackColor = true;
+			this->ScrollBar1->TabIndex = 6;
 			// 
 			// label1
 			// 
@@ -305,6 +155,7 @@ namespace CourseProject4 {
 			this->button2->TabIndex = 12;
 			this->button2->Text = L"Зберегти";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &CreateTest::button2_Click);
 			// 
 			// textBox3
 			// 
@@ -337,70 +188,198 @@ namespace CourseProject4 {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->container);
 			this->Controls->Add(this->ScrollBar1);
 			this->Controls->Add(this->LoginAuthor);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"CreateTest";
 			this->Text = L"CreateTest";
 			this->Load += gcnew System::EventHandler(this, &CreateTest::CreateTest_Load);
-			this->container->ResumeLayout(false);
-			this->container->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
-public:
-	int count_questions;
-	array<TextBox^>^ Questions;
-	array<Panel^>^ Containers_arr;
-void CreateQuestions() {
-    Questions = gcnew array<TextBox^>(count_questions);
-    Containers_arr = gcnew array<Panel^>(count_questions);
+	private:
+		int count_questions;
+		String^ Text_name;
+		array<TextBox^>^ Questions;
+		array<Panel^>^ Containers_arr;
+		array<RadioButton^>^ RadioButton_arr;
+		array<TextBox^>^ TextBoxAnswer_arr;
+		void CreateQuestions() {
+			Questions = gcnew array<TextBox^>(count_questions);
+			Containers_arr = gcnew array<Panel^>(count_questions);
+			RadioButton_arr = gcnew array<RadioButton^>(count_questions * 5);
+			TextBoxAnswer_arr = gcnew array<TextBox^>(count_questions * 5);
 
-    for (int i = 0; i < count_questions; i++) {
-        TextBox^ textBox = gcnew TextBox();
-        textBox->Location = System::Drawing::Point(0, i * 50);
-        textBox->Multiline = true;
-        textBox->Size = System::Drawing::Size(546, 100);
-        this->Controls->Add(textBox);
-        Questions[i] = textBox;
+			int radioButtonX = 0;
+			int radioButtonY = 122;
+			int textboxanswer = 0;
+			for (int i = 0; i < count_questions; i++) {
 
-        Panel^ panel = gcnew Panel();
-        panel->Location = System::Drawing::Point(227, i * 265 + 44);
-        panel->Size = System::Drawing::Size(546, 215);
-        panel->Controls->Add(textBox);
-        Containers_arr[i] = panel;
-        this->Controls->Add(panel);
-    }
+				TextBox^ textBox = gcnew TextBox();
+				textBox->Location = System::Drawing::Point(0, 0);
+				textBox->Multiline = true;
+				textBox->Size = System::Drawing::Size(546, 100);
+				textBox->Height = 100;
+				this->Controls->Add(textBox);
+				Questions[i] = textBox;
 
-}
+				Panel^ panel = gcnew Panel();
+				panel->Location = System::Drawing::Point(227, i * 265 + 44);
+				panel->Size = System::Drawing::Size(546, 215);
+				panel->Height = 215;
+				panel->Anchor = System::Windows::Forms::AnchorStyles::None;
+				panel->Controls->Add(textBox);
+
+				for (int g = 0; g < 5; g++) {
+
+					if (g < 2) {
+						radioButtonX = 37;
+						textboxanswer = 58;
+					}
+					else if (g < 4) {
+						radioButtonX = 212;
+						textboxanswer = 232;
+					}
+					else {
+						radioButtonX = 376;
+						textboxanswer = 396;
+						radioButtonY = 122;
+					}
+					if (radioButtonY >= 156) {
+						radioButtonY = 122;
+					}
+
+					RadioButton^ radioButton = gcnew RadioButton();
+					radioButton->AutoSize = true;
+					radioButton->ForeColor = System::Drawing::Color::White;
+					radioButton->Location = System::Drawing::Point(radioButtonX, radioButtonY);
+					radioButton->Size = System::Drawing::Size(14, 13);
+					radioButton->TabIndex = 6;
+					radioButton->TabStop = true;
+					radioButton->UseVisualStyleBackColor = true;
+					radioButton->CheckedChanged += gcnew EventHandler(this, &CreateTest::radioButton_CheckedChanged);
+					this->Controls->Add(radioButton);
+					panel->Controls->Add(radioButton);
+					RadioButton_arr[i * 5 + g] = radioButton;
+
+					TextBox^ answerbox = gcnew TextBox();
+					answerbox->Location = System::Drawing::Point(textboxanswer, radioButtonY - 2.5);
+					answerbox->Size = System::Drawing::Size(100, 20);
+					answerbox->Multiline = true;
+					this->Controls->Add(answerbox);
+					panel->Controls->Add(answerbox);
+					TextBoxAnswer_arr[i * 5 + g] = answerbox;
+
+					radioButtonY += 30;
+				}
+
+				Containers_arr[i] = panel;
+				this->Controls->Add(panel);
+			}
 
 
-private:
-	System::Void ScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
-		for (int i = 0; i < count_questions; i++) {
-			Containers_arr[i]->Location = System::Drawing::Point(227, i * 265 + 44 - ScrollBar1->Value);
-			Containers_arr[i]->Size = System::Drawing::Size(546, 215);
-			Questions[i]->Size = System::Drawing::Size(546, 100);
+			this->CreateTest_Load(this, gcnew System::EventArgs());
 		}
-		ScrollBar1->Maximum = (count_questions) * 265;
 
-	}
 
 private:
-	System::Void CreateTest_Load(System::Object^ sender, System::EventArgs^ e) {
+	System::Void radioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+	{
+		RadioButton^ radioButton = safe_cast<RadioButton^>(sender);
+		if (radioButton->Checked)
+		{
+			int questionIndex = GetQuestionIndex(radioButton);
+			int radioButtonIndex = GetRadioButtonIndex(questionIndex, radioButton);
+
+			char* temp_path = getenv("TEMP");
+			char* folder_path_result = "\\Testify\\Result\\";
+			char file_name3[255];
+
+			sprintf(file_name3, "%s%s%s", temp_path, folder_path_result, Text_name);
+			int createdir = mkdir(file_name3);
+			sprintf(file_name3, "%s\\Answers.txt", file_name3);
+
+			FILE* fp = fopen(file_name3, "a");
+			if (fp != NULL) {
+				fprintf(fp, "Question %d, RadioButton %d\n", questionIndex, radioButtonIndex);
+			}
+			fclose(fp);
+		}
 	}
 
-private:
-	System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		count_questions = System::Convert::ToInt32(textBox2->Text);
-		if (count_questions < 5) {
-			System::Windows::Forms::MessageBox::Show("Кількість запитань повина бути більше чим 5.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+	int GetQuestionIndex(RadioButton^ radioButton)
+	{
+		Panel^ panel = safe_cast<Panel^>(radioButton->Parent);
+		int panelIndex = -1;
+		for (int i = 0; i < count_questions; i++)
+		{
+			if (Containers_arr[i] == panel)
+			{
+				panelIndex = i;
+				break;
+			}
+		}
+		return panelIndex;
+	}
+
+	int GetRadioButtonIndex(int questionIndex, RadioButton^ radioButton)
+	{
+		Panel^ panel = safe_cast<Panel^>(radioButton->Parent);
+		int panelIndex = -1;
+		for (int i = 0; i < count_questions; i++)
+		{
+			if (Containers_arr[i] == panel)
+			{
+				panelIndex = i;
+				break;
+			}
+		}
+		if (panelIndex == questionIndex)
+		{
+			int radioButtonIndex = panel->Controls->IndexOf(radioButton);
+			return radioButtonIndex % 5;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+	private:
+		System::Void ScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
+			for (int i = 0; i < count_questions; i++) {
+				Containers_arr[i]->Location = System::Drawing::Point(227, i * 265 + 44 - ScrollBar1->Value);
+			}
+
+		}
+
+	private:
+		System::Void CreateTest_Load(System::Object^ sender, System::EventArgs^ e) {
+			ScrollBar1->Maximum = ((count_questions) * 265);
+
+			
+		}
+
+	private:
+		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			count_questions = System::Convert::ToInt32(textBox2->Text);
+			if (count_questions < 3) {
+				System::Windows::Forms::MessageBox::Show("Кількість запитань повина бути більше чим 5.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+			}
+			else {
+				CreateQuestions();
+			}
+		}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (textBox3->Text->Length == 0) {
+			System::Windows::Forms::MessageBox::Show("Назва тесту має містити більше одного символу", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 		}
 		else {
-			CreateQuestions();
+			Text_name = textBox3->Text;
 		}
 	}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

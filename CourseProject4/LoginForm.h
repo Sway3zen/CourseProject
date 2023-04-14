@@ -362,10 +362,10 @@ namespace CourseProject4 {
 			if (LoginBoxUsername == loginStr && LoginBoxPassword == passwordStr) {
 				char* str2 = (char*)(void*)Marshal::StringToHGlobalAnsi(loginStr);
 				SaveToFile(str2);
-
-				InfoForm^ infoForm = gcnew InfoForm();
-				infoForm->Show();
 				this->Hide();
+				InfoForm^ infoForm = gcnew InfoForm();
+				infoForm->ShowDialog();
+				this->Close();
 
 				//System::Windows::Forms::MessageBox::Show("Вхід", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 			}
@@ -386,6 +386,12 @@ private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ 
 
 	sprintf(file_name2, "%s%s", temp_path, folder_path2);
 	int result2 = mkdir(file_name2);
+
+	char* folder_path_result = "\\Testify\\Result";
+	char file_name3[255];
+
+	sprintf(file_name3, "%s%s", temp_path, folder_path_result);
+	int result3 = mkdir(file_name3);
 
 }
 private: System::Void LoginRegisterBtn_Click(System::Object^ sender, System::EventArgs^ e) {

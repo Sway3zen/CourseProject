@@ -180,7 +180,4 @@ namespace CourseProject4 {
 		this->Show();
 	}
 };
-
-
-
 }
