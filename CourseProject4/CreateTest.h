@@ -63,6 +63,7 @@ namespace CourseProject4 {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ button3;
 
 
 
@@ -91,6 +92,7 @@ namespace CourseProject4 {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// LoginAuthor
@@ -136,26 +138,32 @@ namespace CourseProject4 {
 			// 
 			// button1
 			// 
+			this->button1->AutoSize = true;
+			this->button1->BackColor = System::Drawing::Color::White;
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Roboto", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button1->Location = System::Drawing::Point(77, 109);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(75, 27);
 			this->button1->TabIndex = 9;
 			this->button1->Text = L"«берегти";
-			this->button1->UseVisualStyleBackColor = true;
+			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &CreateTest::button1_Click);
 			// 
 			// button2
 			// 
+			this->button2->AutoSize = true;
+			this->button2->BackColor = System::Drawing::Color::White;
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Roboto", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button2->Location = System::Drawing::Point(840, 111);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->Size = System::Drawing::Size(75, 27);
 			this->button2->TabIndex = 12;
 			this->button2->Text = L"«берегти";
-			this->button2->UseVisualStyleBackColor = true;
+			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &CreateTest::button2_Click);
 			// 
 			// textBox3
@@ -176,6 +184,22 @@ namespace CourseProject4 {
 			this->label2->TabIndex = 10;
 			this->label2->Text = L"¬вед≥ть назву тесту:";
 			// 
+			// button3
+			// 
+			this->button3->AutoSize = true;
+			this->button3->BackColor = System::Drawing::Color::White;
+			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Roboto", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->Location = System::Drawing::Point(821, 560);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(104, 27);
+			this->button3->TabIndex = 13;
+			this->button3->Text = L"«берегти тест";
+			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &CreateTest::button3_Click_1);
+			// 
 			// CreateTest
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -183,6 +207,7 @@ namespace CourseProject4 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->ClientSize = System::Drawing::Size(984, 661);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->label2);
@@ -261,11 +286,6 @@ namespace CourseProject4 {
 					radioButton->TabIndex = i*5+g+1;
 					radioButton->TabStop = true;
 					radioButton->UseVisualStyleBackColor = true;
-					
-					if (radioButton->Checked == true) {
-						RadioButtonanswer_arr[i] = g;
-					}
-					radioButton->CheckedChanged += gcnew EventHandler(this, &CreateTest::radioButton_CheckedChanged);
 					this->Controls->Add(radioButton);
 					panel->Controls->Add(radioButton);
 					RadioButton_arr[i * 5 + g] = radioButton;
@@ -289,64 +309,6 @@ namespace CourseProject4 {
 			this->CreateTest_Load(this, gcnew System::EventArgs());
 
 		}
-
-
-private:
-	System::Void radioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
-	{
-		RadioButton^ radioButton = safe_cast<RadioButton^>(sender);
-		if (radioButton->Checked)
-		{
-			int questionIndex = GetQuestionIndex(radioButton);
-			int radioButtonIndex = GetRadioButtonIndex(questionIndex, radioButton);
-
-			char* temp_path = getenv("TEMP");
-			char* folder_path_result = "\\Testify\\Result\\";
-			char file_name3[255];
-
-			sprintf(file_name3, "%s%s%s", temp_path, folder_path_result, Text_name);
-			int createdir = mkdir(file_name3);
-			sprintf(file_name3, "%s\\Answers.txt", file_name3);
-
-			FILE* fp = fopen(file_name3, "a");
-			if (fp != NULL) {
-				fprintf(fp, "Question %d, RadioButton %d\n", questionIndex, radioButtonIndex);
-			}
-			fclose(fp);
-		}
-	}
-
-	int GetQuestionIndex(RadioButton^ radioButton)
-	{
-		Panel^ panel = safe_cast<Panel^>(radioButton->Parent);
-		int panelIndex = -1;
-		for (int i = 0; i < count_questions; i++)
-		{
-			if (Containers_arr[i] == panel)
-			{
-				panelIndex = i;
-				break;
-			}
-		}
-		return panelIndex;
-	}
-
-	int GetRadioButtonIndex(int questionIndex, RadioButton^ radioButton)
-	{
-		int radioButtonIndex = -1;
-		/*for (int i = 0; i < 5; i++)
-		{
-			if (RadioButton_arr[questionIndex * 5 + i] == radioButton)
-			{
-				radioButtonIndex = i;
-				break;
-			}
-		}*/
-
-			radioButtonIndex = RadioButtonanswer_arr[questionIndex];
-		return radioButtonIndex;
-	}
-
 
 	private:
 		System::Void ScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
@@ -397,6 +359,91 @@ private:
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void ScrollBar1_MouseWhell(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
+}
+	   private:
+
+		   array<int>^ GetRadioButtonValues()
+		   {
+			   array<int>^ values = gcnew array<int>(count_questions);
+			   for (int i = 0; i < count_questions; i++)
+			   {
+				   bool foundChecked = false;
+				   for (int j = 0; j < 5; j++)
+				   {
+					   if (RadioButton_arr[i * 5 + j]->Checked)
+					   {
+						   values[i] = j;
+						   foundChecked = true;
+						   break;
+					   }
+				   }
+				   if (!foundChecked)
+				   {
+					   values[i] = -1;
+				   }
+			   }
+			   return values;
+		   }
+
+		   array<String^>^ GetTextBoxValues() {
+			   array<String^>^ values = gcnew array<String^>(count_questions);
+
+			   for (int i = 0; i < count_questions; i++) {
+				   values[i] = System::Convert::ToString(Questions[i]);
+			   }
+			   return values;
+		   }
+
+private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	array<int>^ radioButtonValues = GetRadioButtonValues();
+	array<String^>^ QuestionsValues = GetTextBoxValues();
+
+	char* temp_path = getenv("TEMP");
+	char* folder_path_result = "\\Testify\\Result\\";
+	char* folder_path_quesions = "\\Testify\\Questions\\";
+	char file_name3[255];
+
+	sprintf(file_name3, "%s%s%s", temp_path, folder_path_result, Text_name);
+	int createdir = mkdir(file_name3);
+	sprintf(file_name3, "%s\\Answers.txt", file_name3);
+
+	FILE* fp;
+	fp=fopen(file_name3, "w");
+	if (fp != NULL) {
+
+	}
+	fclose(fp);
+
+
+
+	for (int i = 0; i < count_questions; i++) {
+		fp = fopen(file_name3, "a");
+		if (fp != NULL) {
+			fprintf(fp, "Question: %d, RadioButton: %d\n", i, radioButtonValues[i]);
+			fclose(fp);
+
+		}
+	}
+
+	sprintf(file_name3, "%s%s%s", temp_path, folder_path_quesions, Text_name);
+	createdir = mkdir(file_name3);
+	sprintf(file_name3, "%s\\Questions.txt", file_name3);
+
+	fp = fopen(file_name3, "w");
+	if (fp != NULL) {
+	}
+	fclose(fp);
+
+
+
+	for (int i = 0; i < count_questions; i++) {
+		fp = fopen(file_name3, "a");
+		if (fp != NULL) {
+			fprintf(fp, "Question: %d, Text: %d\n", i, QuestionsValues[i]);
+			fclose(fp);
+
+		}
+	}
 }
 };
 }
