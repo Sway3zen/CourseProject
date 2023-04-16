@@ -398,6 +398,11 @@ private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ 
 	sprintf(file_name3, "%s%s", temp_path, folder_path_questions);
 	result3 = mkdir(file_name3);
 
+	char* folder_path_answers = "\\Testify\\Questions Answers";
+
+	sprintf(file_name3, "%s%s", temp_path, folder_path_questions);
+	result3 = mkdir(file_name3);
+
 }
 private: System::Void LoginRegisterBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();

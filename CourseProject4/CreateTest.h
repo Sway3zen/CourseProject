@@ -235,7 +235,7 @@ namespace CourseProject4 {
 		void CreateQuestions() {
 			Questions = gcnew array<TextBox^>(count_questions);
 			Containers_arr = gcnew array<Panel^>(count_questions);
-			RadioButton_arr = gcnew array<RadioButton^>(count_questions*5);
+			RadioButton_arr = gcnew array<RadioButton^>(count_questions * 5);
 			RadioButtonanswer_arr = gcnew array<int>(count_questions);
 			TextBoxAnswer_arr = gcnew array<TextBox^>(count_questions * 5);
 
@@ -283,7 +283,7 @@ namespace CourseProject4 {
 					radioButton->ForeColor = System::Drawing::Color::White;
 					radioButton->Location = System::Drawing::Point(radioButtonX, radioButtonY);
 					radioButton->Size = System::Drawing::Size(14, 13);
-					radioButton->TabIndex = i*5+g+1;
+					radioButton->TabIndex = i * 5 + g + 1;
 					radioButton->TabStop = true;
 					radioButton->UseVisualStyleBackColor = true;
 					this->Controls->Add(radioButton);
@@ -356,94 +356,115 @@ namespace CourseProject4 {
 			Text_name = textBox3->Text;
 		}
 	}
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void ScrollBar1_MouseWhell(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
-}
-	   private:
-
-		   array<int>^ GetRadioButtonValues()
-		   {
-			   array<int>^ values = gcnew array<int>(count_questions);
-			   for (int i = 0; i < count_questions; i++)
-			   {
-				   bool foundChecked = false;
-				   for (int j = 0; j < 5; j++)
-				   {
-					   if (RadioButton_arr[i * 5 + j]->Checked)
-					   {
-						   values[i] = j;
-						   foundChecked = true;
-						   break;
-					   }
-				   }
-				   if (!foundChecked)
-				   {
-					   values[i] = -1;
-				   }
-			   }
-			   return values;
-		   }
-
-		   array<String^>^ GetTextBoxValues() {
-			   array<String^>^ values = gcnew array<String^>(count_questions);
-
-			   for (int i = 0; i < count_questions; i++) {
-				   values[i] = System::Convert::ToString(Questions[i]);
-			   }
-			   return values;
-		   }
-
-private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	array<int>^ radioButtonValues = GetRadioButtonValues();
-	array<String^>^ QuestionsValues = GetTextBoxValues();
-
-	char* temp_path = getenv("TEMP");
-	char* folder_path_result = "\\Testify\\Result\\";
-	char* folder_path_quesions = "\\Testify\\Questions\\";
-	char file_name3[255];
-
-	sprintf(file_name3, "%s%s%s", temp_path, folder_path_result, Text_name);
-	int createdir = mkdir(file_name3);
-	sprintf(file_name3, "%s\\Answers.txt", file_name3);
-
-	FILE* fp;
-	fp=fopen(file_name3, "w");
-	if (fp != NULL) {
-
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	fclose(fp);
+	private: System::Void ScrollBar1_MouseWhell(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
+	}
+	private:
+		array<int>^ GetRadioButtonValues()
+		{
+			array<int>^ values = gcnew array<int>(count_questions);
+			for (int i = 0; i < count_questions; i++)
+			{
+				bool foundChecked = false;
+				for (int j = 0; j < 5; j++)
+				{
+					if (RadioButton_arr[i * 5 + j]->Checked)
+					{
+						values[i] = j;
+						foundChecked = true;
+						break;
+					}
+				}
+				if (!foundChecked)
+				{
+					values[i] = -1;
+				}
+			}
+			return values;
+		}
+		String^ GetAnswer(array<TextBox^>^ textBoxArr, int index) {
+			return textBoxArr[index]->Text;
+		}
 
 
+	private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		array<int>^ radioButtonValues = GetRadioButtonValues();
+		array<String^>^ QuestionsValues;
+		QuestionsValues = gcnew array<String^>(count_questions);
 
-	for (int i = 0; i < count_questions; i++) {
-		fp = fopen(file_name3, "a");
+		for (int i = 0; i < count_questions; i++) {
+			QuestionsValues[i] = Questions[i]->Text;
+		}
+
+		char* temp_path = getenv("TEMP");
+		char* folder_path_result = "\\Testify\\Result\\";
+		char* folder_path_quesions = "\\Testify\\Questions\\";
+		char file_name3[255];
+
+		sprintf(file_name3, "%s%s%s", temp_path, folder_path_result, Text_name);
+		int createdir = mkdir(file_name3);
+		sprintf(file_name3, "%s\\Answers.txt", file_name3);
+
+		FILE* fp;
+		fp = fopen(file_name3, "w");
 		if (fp != NULL) {
-			fprintf(fp, "Question: %d, RadioButton: %d\n", i, radioButtonValues[i]);
-			fclose(fp);
 
 		}
-	}
-
-	sprintf(file_name3, "%s%s%s", temp_path, folder_path_quesions, Text_name);
-	createdir = mkdir(file_name3);
-	sprintf(file_name3, "%s\\Questions.txt", file_name3);
-
-	fp = fopen(file_name3, "w");
-	if (fp != NULL) {
-	}
-	fclose(fp);
+		fclose(fp);
 
 
 
-	for (int i = 0; i < count_questions; i++) {
-		fp = fopen(file_name3, "a");
+		for (int i = 0; i < count_questions; i++) {
+			fp = fopen(file_name3, "a");
+			if (fp != NULL) {
+				fprintf(fp, "Question: %d, RadioButton: %d\n", i, radioButtonValues[i]);
+				fclose(fp);
+
+			}
+		}
+
+		sprintf(file_name3, "%s%s%s", temp_path, folder_path_quesions, Text_name);
+		createdir = mkdir(file_name3);
+		sprintf(file_name3, "%s\\Questions.txt", file_name3);
+
+		fp = fopen(file_name3, "w");
 		if (fp != NULL) {
-			fprintf(fp, "Question: %d, Text: %d\n", i, QuestionsValues[i]);
-			fclose(fp);
+		}
+		fclose(fp);
 
+
+
+		for (int i = 0; i < count_questions; i++) {
+			fp = fopen(file_name3, "a");
+			if (fp != NULL) {
+				fprintf(fp, "Question: %d, Text: %s\n", i, QuestionsValues[i]);
+				fclose(fp);
+
+			}
+		}
+
+		sprintf(file_name3, "%s%s%s", temp_path, folder_path_quesions, Text_name);
+		createdir = mkdir(file_name3);
+		sprintf(file_name3, "%s\\Questions_answer.txt", file_name3);
+
+		fp = fopen(file_name3, "w");
+		if (fp != NULL) {
+		}
+		fclose(fp);
+
+
+
+		for (int i = 0; i < count_questions; i++) {
+			fp = fopen(file_name3, "a");
+			if (fp != NULL) {
+				fprintf(fp, "Question: %d\n", i);
+				for (int j = 0; j < 5; j++) {
+					fprintf(fp, "Answer %d: %s\n", j, GetAnswer(TextBoxAnswer_arr, i * 5 + j));
+				}
+				fclose(fp);
+			}
 		}
 	}
-}
-};
+	};
 }
