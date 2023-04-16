@@ -67,6 +67,7 @@ namespace CourseProject4 {
 
 
 
+
 	protected:
 
 	private:
@@ -205,10 +206,12 @@ namespace CourseProject4 {
 		array<Panel^>^ Containers_arr;
 		array<RadioButton^>^ RadioButton_arr;
 		array<TextBox^>^ TextBoxAnswer_arr;
+		array<int>^ RadioButtonanswer_arr;
 		void CreateQuestions() {
 			Questions = gcnew array<TextBox^>(count_questions);
 			Containers_arr = gcnew array<Panel^>(count_questions);
-			RadioButton_arr = gcnew array<RadioButton^>(count_questions * 5);
+			RadioButton_arr = gcnew array<RadioButton^>(count_questions*5);
+			RadioButtonanswer_arr = gcnew array<int>(count_questions);
 			TextBoxAnswer_arr = gcnew array<TextBox^>(count_questions * 5);
 
 			int radioButtonX = 0;
@@ -255,9 +258,13 @@ namespace CourseProject4 {
 					radioButton->ForeColor = System::Drawing::Color::White;
 					radioButton->Location = System::Drawing::Point(radioButtonX, radioButtonY);
 					radioButton->Size = System::Drawing::Size(14, 13);
-					radioButton->TabIndex = 6;
+					radioButton->TabIndex = i*5+g+1;
 					radioButton->TabStop = true;
 					radioButton->UseVisualStyleBackColor = true;
+					
+					if (radioButton->Checked == true) {
+						RadioButtonanswer_arr[i] = g;
+					}
 					radioButton->CheckedChanged += gcnew EventHandler(this, &CreateTest::radioButton_CheckedChanged);
 					this->Controls->Add(radioButton);
 					panel->Controls->Add(radioButton);
@@ -280,6 +287,7 @@ namespace CourseProject4 {
 
 
 			this->CreateTest_Load(this, gcnew System::EventArgs());
+
 		}
 
 
@@ -325,26 +333,20 @@ private:
 
 	int GetRadioButtonIndex(int questionIndex, RadioButton^ radioButton)
 	{
-		Panel^ panel = safe_cast<Panel^>(radioButton->Parent);
-		int panelIndex = -1;
-		for (int i = 0; i < count_questions; i++)
+		int radioButtonIndex = -1;
+		/*for (int i = 0; i < 5; i++)
 		{
-			if (Containers_arr[i] == panel)
+			if (RadioButton_arr[questionIndex * 5 + i] == radioButton)
 			{
-				panelIndex = i;
+				radioButtonIndex = i;
 				break;
 			}
-		}
-		if (panelIndex == questionIndex)
-		{
-			int radioButtonIndex = panel->Controls->IndexOf(radioButton);
-			return radioButtonIndex % 5;
-		}
-		else
-		{
-			return -1;
-		}
+		}*/
+
+			radioButtonIndex = RadioButtonanswer_arr[questionIndex];
+		return radioButtonIndex;
 	}
+
 
 	private:
 		System::Void ScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
@@ -354,11 +356,24 @@ private:
 
 		}
 
+		System::Void ScrollBar1_MouseWheel(System::Object^ sender, MouseEventArgs^ e)
+		{
+			int scrollAmount = e->Delta / SystemInformation::MouseWheelScrollDelta;
+			if (e->Delta > 0)
+			{
+				ScrollBar1->Value = Math::Max(ScrollBar1->Minimum, ScrollBar1->Value - scrollAmount);
+			}
+			else if (e->Delta < 0)
+			{
+				ScrollBar1->Value = Math::Min(ScrollBar1->Maximum - ScrollBar1->LargeChange + 1, ScrollBar1->Value - scrollAmount);
+			}
+		}
+
 	private:
 		System::Void CreateTest_Load(System::Object^ sender, System::EventArgs^ e) {
 			ScrollBar1->Maximum = ((count_questions) * 265);
+			this->ScrollBar1->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &CreateTest::ScrollBar1_MouseWheel);
 
-			
 		}
 
 	private:
@@ -380,6 +395,8 @@ private:
 		}
 	}
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void ScrollBar1_MouseWhell(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
 }
 };
 }
