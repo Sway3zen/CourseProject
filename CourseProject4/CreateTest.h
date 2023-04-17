@@ -60,7 +60,7 @@ namespace CourseProject4 {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ button3;
@@ -89,7 +89,6 @@ namespace CourseProject4 {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
@@ -131,9 +130,9 @@ namespace CourseProject4 {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(64, 74);
+			this->textBox2->Location = System::Drawing::Point(16, 74);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
+			this->textBox2->Size = System::Drawing::Size(205, 20);
 			this->textBox2->TabIndex = 8;
 			// 
 			// button1
@@ -143,7 +142,7 @@ namespace CourseProject4 {
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Roboto", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(77, 109);
+			this->button1->Location = System::Drawing::Point(74, 157);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 27);
 			this->button1->TabIndex = 9;
@@ -151,26 +150,11 @@ namespace CourseProject4 {
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &CreateTest::button1_Click);
 			// 
-			// button2
-			// 
-			this->button2->AutoSize = true;
-			this->button2->BackColor = System::Drawing::Color::White;
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Roboto", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(840, 111);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 27);
-			this->button2->TabIndex = 12;
-			this->button2->Text = L"Зберегти";
-			this->button2->UseVisualStyleBackColor = false;
-			this->button2->Click += gcnew System::EventHandler(this, &CreateTest::button2_Click);
-			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(799, 76);
+			this->textBox3->Location = System::Drawing::Point(16, 131);
 			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(165, 20);
+			this->textBox3->Size = System::Drawing::Size(205, 20);
 			this->textBox3->TabIndex = 11;
 			// 
 			// label2
@@ -178,7 +162,7 @@ namespace CourseProject4 {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Roboto", 12.75F));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(795, 42);
+			this->label2->Location = System::Drawing::Point(12, 108);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(169, 20);
 			this->label2->TabIndex = 10;
@@ -208,7 +192,6 @@ namespace CourseProject4 {
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->ClientSize = System::Drawing::Size(984, 661);
 			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button1);
@@ -347,14 +330,15 @@ namespace CourseProject4 {
 			else {
 				CreateQuestions();
 			}
+			if (textBox3->Text->Length == 0) {
+				System::Windows::Forms::MessageBox::Show("Назва тесту має містити більше одного символу", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+			}
+			else {
+				Text_name = textBox3->Text;
+			}
 		}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (textBox3->Text->Length == 0) {
-			System::Windows::Forms::MessageBox::Show("Назва тесту має містити більше одного символу", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-		}
-		else {
-			Text_name = textBox3->Text;
-		}
+		
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}

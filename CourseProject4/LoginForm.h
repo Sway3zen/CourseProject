@@ -377,6 +377,7 @@ namespace CourseProject4 {
 private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	char* temp_path = getenv("TEMP");
 	char file_name[255];
+
 	sprintf(file_name, "%s\\Testify", temp_path);
 
 	int result = mkdir(file_name);
