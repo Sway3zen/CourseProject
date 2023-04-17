@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "CreateTest.h"
+#include "ListTestForm.h"
 #pragma once
 
 
@@ -99,6 +100,7 @@ namespace CourseProject4 {
 			this->label2->Size = System::Drawing::Size(152, 25);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Перелік тестів";
+			this->label2->Click += gcnew System::EventHandler(this, &Switchtask::label2_Click);
 			// 
 			// label3
 			// 
@@ -179,5 +181,11 @@ namespace CourseProject4 {
 		createTest->ShowDialog();
 		this->Show();
 	}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	ListTestForm^ listform = gcnew ListTestForm();
+	listform->ShowDialog();
+	this->Show();
+}
 };
 }

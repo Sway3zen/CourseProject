@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClCompile Include="CreateTest.cpp" />
     <ClCompile Include="InfoForm.cpp" />
+    <ClCompile Include="ListTestForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="Switchtask.cpp" />
@@ -134,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="dlls\GetUsername.h" />
     <ClInclude Include="InfoForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ListTestForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
@@ -152,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InfoForm.resx">
       <DependentUpon>InfoForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListTestForm.resx">
+      <DependentUpon>ListTestForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>

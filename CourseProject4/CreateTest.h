@@ -112,7 +112,7 @@ namespace CourseProject4 {
 			// 
 			this->ScrollBar1->LargeChange = 40;
 			this->ScrollBar1->Location = System::Drawing::Point(967, -2);
-			this->ScrollBar1->Maximum = 1000;
+			this->ScrollBar1->Maximum = 200;
 			this->ScrollBar1->Name = L"ScrollBar1";
 			this->ScrollBar1->Size = System::Drawing::Size(17, 623);
 			this->ScrollBar1->SmallChange = 40;
@@ -342,7 +342,7 @@ namespace CourseProject4 {
 		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 			count_questions = System::Convert::ToInt32(textBox2->Text);
 			if (count_questions < 3) {
-				System::Windows::Forms::MessageBox::Show("Кількість запитань повина бути більше чим 5.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+				System::Windows::Forms::MessageBox::Show("Кількість запитань повина бути більше чим 3.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 			}
 			else {
 				CreateQuestions();
