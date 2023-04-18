@@ -120,11 +120,12 @@ namespace CourseProject4 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Roboto", 12.75F));
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.75F));
 			this->label1->ForeColor = System::Drawing::Color::White;
 			this->label1->Location = System::Drawing::Point(12, 42);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(209, 20);
+			this->label1->Size = System::Drawing::Size(203, 20);
 			this->label1->TabIndex = 7;
 			this->label1->Text = L"Введіть кількість питань:";
 			// 
@@ -140,11 +141,11 @@ namespace CourseProject4 {
 			this->button1->AutoSize = true;
 			this->button1->BackColor = System::Drawing::Color::White;
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Roboto", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button1->Location = System::Drawing::Point(74, 157);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 27);
+			this->button1->Size = System::Drawing::Size(81, 28);
 			this->button1->TabIndex = 9;
 			this->button1->Text = L"Зберегти";
 			this->button1->UseVisualStyleBackColor = false;
@@ -160,11 +161,11 @@ namespace CourseProject4 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Roboto", 12.75F));
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.75F));
 			this->label2->ForeColor = System::Drawing::Color::White;
 			this->label2->Location = System::Drawing::Point(12, 108);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(169, 20);
+			this->label2->Size = System::Drawing::Size(186, 20);
 			this->label2->TabIndex = 10;
 			this->label2->Text = L"Введіть назву тесту:";
 			// 
@@ -174,11 +175,11 @@ namespace CourseProject4 {
 			this->button3->BackColor = System::Drawing::Color::White;
 			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Roboto", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button3->Location = System::Drawing::Point(821, 560);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(104, 27);
+			this->button3->Size = System::Drawing::Size(113, 28);
 			this->button3->TabIndex = 13;
 			this->button3->Text = L"Зберегти тест";
 			this->button3->UseVisualStyleBackColor = false;
@@ -329,6 +330,8 @@ namespace CourseProject4 {
 			}
 			else {
 				CreateQuestions();
+				this->label1->Enabled= 0;
+				this->textBox2->Enabled = 0;
 			}
 			if (textBox3->Text->Length == 0) {
 				System::Windows::Forms::MessageBox::Show("Назва тесту має містити більше одного символу", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
