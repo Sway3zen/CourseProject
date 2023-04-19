@@ -134,6 +134,7 @@ namespace CourseProject4 {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->LoginAuthor);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Name = L"InfoForm";
 			this->Text = L"InfoForm";
 			this->ResumeLayout(false);

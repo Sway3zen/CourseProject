@@ -70,7 +70,7 @@ namespace CourseProject4 {
 				static_cast<System::Int32>(static_cast<System::Byte>(236)));
 			this->LoginAuthor->Cursor = System::Windows::Forms::Cursors::Default;
 			this->LoginAuthor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
-			this->LoginAuthor->Location = System::Drawing::Point(-3, 724);
+			this->LoginAuthor->Location = System::Drawing::Point(-3, 710);
 			this->LoginAuthor->Name = L"LoginAuthor";
 			this->LoginAuthor->Size = System::Drawing::Size(987, 40);
 			this->LoginAuthor->TabIndex = 3;
@@ -83,9 +83,11 @@ namespace CourseProject4 {
 			this->vScrollBar1->Name = L"vScrollBar1";
 			this->vScrollBar1->Size = System::Drawing::Size(18, 766);
 			this->vScrollBar1->TabIndex = 4;
+			this->vScrollBar1->Scroll += gcnew System::Windows::Forms::ScrollEventHandler(this, &ListTestForm::vScrollBar1_Scroll);
 			// 
 			// tableLayoutPanel1
 			// 
+			this->tableLayoutPanel1->BackColor = System::Drawing::Color::White;
 			this->tableLayoutPanel1->ColumnCount = 3;
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
 				50)));
@@ -94,7 +96,7 @@ namespace CourseProject4 {
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
 				170)));
 			this->tableLayoutPanel1->Controls->Add(this->label1, 0, 0);
-			this->tableLayoutPanel1->Location = System::Drawing::Point(128, 34);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(180, 577);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 1;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
@@ -146,10 +148,10 @@ namespace CourseProject4 {
 			Panel_arr = gcnew array<TableLayoutPanel^>(files);
 
 			int tableposx = 130;
-			int tableposy = 0;
+			int tableposy = 50;
 			for (int i = 0; i < files; i++) {
 				TableLayoutPanel^ table = gcnew TableLayoutPanel();
-				table->Location = System::Drawing::Point(0, 0);
+				table->Location = System::Drawing::Point(tableposx, tableposy);
 				table->Size = System::Drawing::Size(635, 33);
 				table->ColumnCount = 3;
 				table->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
@@ -158,13 +160,22 @@ namespace CourseProject4 {
 					236)));
 				table->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
 					170)));
-				this->tableLayoutPanel1->RowCount = 1;
-				this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-				this->tableLayoutPanel1->TabIndex = i;
-				this->tableLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &ListTestForm::tableLayoutPanel1_Paint);
+				table->RowCount = 1;
+				table->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+				table->TabIndex = i;
+				table->BackColor = System::Drawing::Color::White;
+				Label^ text_names_box = gcnew Label();
+				text_names_box->Text = Test_names[i];
+				table->Controls->Add(text_names_box, 0, 0);
+
 				this->Controls->Add(table);
+				
 				Panel_arr[i] = table;
 
+				tableposy += 50;
+
+
+				//table->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &ListTestForm::table_Paint);
 				/*				TextBox^ textBox = gcnew TextBox();
 				textBox->Location = System::Drawing::Point(0, 0);
 				textBox->Multiline = true;
@@ -208,8 +219,15 @@ namespace CourseProject4 {
 			}
 			int i = 0;
 			while ((de = readdir(dr)) != NULL) {
-				Test_names[i] = gcnew String(de->d_name);
-				i++;
+				String^ tested = gcnew String(de->d_name);
+				if (tested == "." || tested == "..") {
+
+				}
+				else {
+					Test_names[i] = gcnew String(de->d_name);
+					//System::Windows::Forms::MessageBox::Show(tested, "Τΰιλ³β", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+					i++;
+				}
 			}
 		}
 
@@ -242,9 +260,24 @@ namespace CourseProject4 {
 #pragma endregion
 	private: System::Void ListTestForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		CheckDirectory();
-		System::Windows::Forms::MessageBox::Show(System::Convert::ToString(files), "Τΰιλ³β", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+		GetNameofTests();
+		CreateContainers();
+		if (files * 50 < 800) {
+			vScrollBar1->Maximum = 0;
+			vScrollBar1->Enabled = 0;
+			vScrollBar1->Visible = 0;
+		}
+		else {
+			vScrollBar1->Maximum = ((files) * 50);
+		}
+		//System::Windows::Forms::MessageBox::Show(System::Convert::ToString(files), "Τΰιλ³β", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 	}
 	private: System::Void tableLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
+private: System::Void vScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
+	for (int i = 0; i < files; i++) {
+		Panel_arr[i]->Location = System::Drawing::Point(130, i * 50+50 - vScrollBar1->Value);
+	}
+}
 };
 }
