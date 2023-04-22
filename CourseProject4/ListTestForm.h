@@ -42,6 +42,7 @@ namespace CourseProject4 {
 	private: System::Windows::Forms::VScrollBar^ vScrollBar1;
 	private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ button1;
 	protected:
 
 	private:
@@ -61,6 +62,7 @@ namespace CourseProject4 {
 			this->vScrollBar1 = (gcnew System::Windows::Forms::VScrollBar());
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->tableLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -96,6 +98,7 @@ namespace CourseProject4 {
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
 				170)));
 			this->tableLayoutPanel1->Controls->Add(this->label1, 0, 0);
+			this->tableLayoutPanel1->Controls->Add(this->button1, 2, 0);
 			this->tableLayoutPanel1->Location = System::Drawing::Point(180, 577);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 1;
@@ -112,6 +115,19 @@ namespace CourseProject4 {
 			this->label1->Size = System::Drawing::Size(51, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"label1";
+			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::Color::Transparent;
+			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button1->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button1->Location = System::Drawing::Point(508, 3);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(164, 27);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"Пройти";
+			this->button1->UseVisualStyleBackColor = false;
 			// 
 			// ListTestForm
 			// 
@@ -137,6 +153,7 @@ namespace CourseProject4 {
 			this->ResumeLayout(false);
 
 		}
+#pragma endregion
 
 	private:
 
@@ -167,39 +184,25 @@ namespace CourseProject4 {
 				Label^ text_names_box = gcnew Label();
 				text_names_box->Text = Test_names[i];
 				table->Controls->Add(text_names_box, 0, 0);
+				Label^ text_result_box = gcnew Label();
+
+				Button^ btn_start = gcnew Button();
+				btn_start->BackColor = System::Drawing::Color::White;
+				btn_start->ForeColor = System::Drawing::SystemColors::ControlText;
+				btn_start->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+				btn_start->TabIndex = i;
+				btn_start->Text = L"Розпочати";
+				btn_start->Size = System::Drawing::Size(164, 27);
+
+				table->Controls->Add(btn_start, 3, 0);
+				btn_start->Click += gcnew EventHandler(this, &ListTestForm::btn_start_Click);
+
 
 				this->Controls->Add(table);
 				
 				Panel_arr[i] = table;
 
 				tableposy += 50;
-
-
-				//table->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &ListTestForm::table_Paint);
-				/*				TextBox^ textBox = gcnew TextBox();
-				textBox->Location = System::Drawing::Point(0, 0);
-				textBox->Multiline = true;
-				textBox->Size = System::Drawing::Size(546, 100);
-				textBox->Height = 100;
-				this->Controls->Add(textBox);
-				Questions[i] = textBox;*/
-
-				/*this->tableLayoutPanel1->ColumnCount = 3;
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				50)));
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
-				236)));
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
-				170)));
-			this->tableLayoutPanel1->Controls->Add(this->label1, 0, 0);
-			this->tableLayoutPanel1->Location = System::Drawing::Point(128, 34);
-			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
-			this->tableLayoutPanel1->RowCount = 1;
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(675, 33);
-			this->tableLayoutPanel1->TabIndex = 5;
-			this->tableLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &ListTestForm::tableLayoutPanel1_Paint);
-*/
 			}
 		}
 
@@ -225,7 +228,6 @@ namespace CourseProject4 {
 				}
 				else {
 					Test_names[i] = gcnew String(de->d_name);
-					//System::Windows::Forms::MessageBox::Show(tested, "Файлів", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 					i++;
 				}
 			}
@@ -253,11 +255,29 @@ namespace CourseProject4 {
 				g++;
 			}
 
-			//System::Windows::Forms::MessageBox::Show(System::Convert::ToString(files), "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-
 			return files = g - 2;
 		}
-#pragma endregion
+
+		void btn_start_Click(System::Object^ sender, System::EventArgs^ e)
+		{
+			Button^ button = safe_cast<Button^>(sender);
+
+			TableLayoutPanel^ panel = safe_cast<TableLayoutPanel^>(Panel_arr[button->TabIndex]);
+
+			Label^ label = safe_cast<Label^>(panel->GetControlFromPosition(0, 0));
+
+			String^ text = label->Text;
+
+			char file_name[255];
+
+			sprintf(file_name, "%s.txt", text);
+
+			String^ name_test = gcnew String(file_name);
+
+			System::Windows::Forms::MessageBox::Show(name_test, "Назва", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+
+		}
+
 	private: System::Void ListTestForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		CheckDirectory();
 		GetNameofTests();

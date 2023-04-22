@@ -267,7 +267,7 @@ namespace CourseProject4 {
 					radioButton->ForeColor = System::Drawing::Color::White;
 					radioButton->Location = System::Drawing::Point(radioButtonX, radioButtonY);
 					radioButton->Size = System::Drawing::Size(14, 13);
-					radioButton->TabIndex = i * 5 + g + 1;
+					radioButton->TabIndex = g;
 					radioButton->TabStop = true;
 					radioButton->UseVisualStyleBackColor = true;
 					this->Controls->Add(radioButton);
@@ -297,14 +297,14 @@ namespace CourseProject4 {
 	private:
 		System::Void ScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
 			for (int i = 0; i < count_questions; i++) {
-				Containers_arr[i]->Location = System::Drawing::Point(227, i * 265 + 44 - ScrollBar1->Value);
+				Containers_arr[i]->Location = System::Drawing::Point(227, (i * 265 + 44 - (ScrollBar1->Value)));
 			}
 
 		}
 
 		System::Void ScrollBar1_MouseWheel(System::Object^ sender, MouseEventArgs^ e)
 		{
-			int scrollAmount = e->Delta / SystemInformation::MouseWheelScrollDelta;
+			/*int scrollAmount = e->Delta / SystemInformation::MouseWheelScrollDelta;
 			if (e->Delta > 0)
 			{
 				ScrollBar1->Value = Math::Max(ScrollBar1->Minimum, ScrollBar1->Value - scrollAmount);
@@ -312,13 +312,13 @@ namespace CourseProject4 {
 			else if (e->Delta < 0)
 			{
 				ScrollBar1->Value = Math::Min(ScrollBar1->Maximum - ScrollBar1->LargeChange + 1, ScrollBar1->Value - scrollAmount);
-			}
+			}*/
 		}
 
 	private:
 		System::Void CreateTest_Load(System::Object^ sender, System::EventArgs^ e) {
-			ScrollBar1->Maximum = ((count_questions) * 265);
-			this->ScrollBar1->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &CreateTest::ScrollBar1_MouseWheel);
+			ScrollBar1->Maximum = ((count_questions) * 230);
+			//this->ScrollBar1->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &CreateTest::ScrollBar1_MouseWheel);
 
 		}
 
@@ -434,7 +434,7 @@ namespace CourseProject4 {
 		sprintf(file_name3, "%s%s%s", temp_path, folder_path_quesions, Text_name);
 		createdir = mkdir(file_name3);
 		sprintf(file_name3, "%s\\Questions_answer.txt", file_name3);
-
+ 
 		fp = fopen(file_name3, "w");
 		if (fp != NULL) {
 		}
@@ -447,7 +447,7 @@ namespace CourseProject4 {
 			if (fp != NULL) {
 				fprintf(fp, "Question: %d\n", i);
 				for (int j = 0; j < 5; j++) {
-					fprintf(fp, "Answer %d: %s\n", j, GetAnswer(TextBoxAnswer_arr, i * 5 + j));
+					fprintf(fp, "Answer %d.%d: %s\n", i, j, GetAnswer(TextBoxAnswer_arr, i * 5 + j));
 				}
 				fclose(fp);
 			}
