@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include "DoTestForm.h"
 #pragma once
 
 namespace CourseProject4 {
@@ -291,11 +292,13 @@ namespace CourseProject4 {
 
 			String^ name_test = gcnew String(file_name);
 
-			//System::Windows::Forms::MessageBox::Show(name_test, "Назва", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 
 			char* str2 = (char*)(void*)Marshal::StringToHGlobalAnsi(name_test);
 			SaveToFile(str2);
-
+			DoTestForm^ dotest = gcnew DoTestForm();
+			this->Hide();
+			dotest->ShowDialog();
+			this->Show();
 		}
 
 	private: System::Void ListTestForm_Load(System::Object^ sender, System::EventArgs^ e) {

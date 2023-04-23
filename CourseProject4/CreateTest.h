@@ -418,9 +418,8 @@ namespace CourseProject4 {
 		fp = fopen(file_name3, "w");
 		if (fp != NULL) {
 		}
+			fprintf(fp, "Count of questions: %d\n", count_questions);
 		fclose(fp);
-
-
 
 		for (int i = 0; i < count_questions; i++) {
 			fp = fopen(file_name3, "a");

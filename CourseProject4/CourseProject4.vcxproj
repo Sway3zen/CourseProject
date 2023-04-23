@@ -158,6 +158,9 @@
     <EmbeddedResource Include="CreateTest.resx">
       <DependentUpon>CreateTest.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DoTestForm.resx">
+      <DependentUpon>DoTestForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InfoForm.resx">
       <DependentUpon>InfoForm.h</DependentUpon>
     </EmbeddedResource>
