@@ -420,7 +420,7 @@ namespace CourseProject4 {
 		for (int i = 0; i < count_questions; i++) {
 			fp = fopen(file_name3, "a");
 			if (fp != NULL) {
-				fprintf(fp, "Question: %d, RadioButton: %d, Text: %s\n", i, radioButtonValues[i], RightAnswerText[i]);
+				fprintf(fp, "Question: %d, Text: %s\n", i, RightAnswerText[i]);
 				fclose(fp);
 
 			}
