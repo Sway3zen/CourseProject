@@ -278,6 +278,7 @@ namespace CourseProject4 {
 					answerbox->Location = System::Drawing::Point(textboxanswer, radioButtonY - 2.5);
 					answerbox->Size = System::Drawing::Size(100, 20);
 					answerbox->Multiline = true;
+					answerbox->TabIndex = g;
 					this->Controls->Add(answerbox);
 					panel->Controls->Add(answerbox);
 					TextBoxAnswer_arr[i * 5 + g] = answerbox;
@@ -304,22 +305,11 @@ namespace CourseProject4 {
 
 		System::Void ScrollBar1_MouseWheel(System::Object^ sender, MouseEventArgs^ e)
 		{
-			/*int scrollAmount = e->Delta / SystemInformation::MouseWheelScrollDelta;
-			if (e->Delta > 0)
-			{
-				ScrollBar1->Value = Math::Max(ScrollBar1->Minimum, ScrollBar1->Value - scrollAmount);
-			}
-			else if (e->Delta < 0)
-			{
-				ScrollBar1->Value = Math::Min(ScrollBar1->Maximum - ScrollBar1->LargeChange + 1, ScrollBar1->Value - scrollAmount);
-			}*/
 		}
 
 	private:
 		System::Void CreateTest_Load(System::Object^ sender, System::EventArgs^ e) {
-			ScrollBar1->Maximum = ((count_questions) * 230);
-			//this->ScrollBar1->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &CreateTest::ScrollBar1_MouseWheel);
-
+			ScrollBar1->Maximum = ((count_questions) * 265);
 		}
 
 	private:
@@ -370,6 +360,30 @@ namespace CourseProject4 {
 			}
 			return values;
 		}
+
+		array<String^>^ GetRightTextAnswer()
+		{
+			array<String^>^ values = gcnew array<String^>(count_questions);
+			for (int i = 0; i < count_questions; i++)
+			{
+				bool foundChecked = false;
+				for (int j = 0; j < 5; j++)
+				{
+					if (RadioButton_arr[i * 5 + j]->Checked)
+					{
+						values[i] = System::Convert::ToString(TextBoxAnswer_arr[i * 5 + j]->Text);
+						foundChecked = true;
+						break;
+					}
+				}
+				if (!foundChecked)
+				{
+					values[i] = "-1";
+				}
+			}
+			return values;
+		}
+
 		String^ GetAnswer(array<TextBox^>^ textBoxArr, int index) {
 			return textBoxArr[index]->Text;
 		}
@@ -377,6 +391,7 @@ namespace CourseProject4 {
 
 	private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
 		array<int>^ radioButtonValues = GetRadioButtonValues();
+		array<String^>^ RightAnswerText = GetRightTextAnswer();
 		array<String^>^ QuestionsValues;
 		QuestionsValues = gcnew array<String^>(count_questions);
 
@@ -386,7 +401,7 @@ namespace CourseProject4 {
 
 		char* temp_path = getenv("TEMP");
 		char* folder_path_result = "\\Testify\\Result\\";
-		char* folder_path_quesions = "\\Testify\\Questions\\";
+		char* folder_path_questions = "\\Testify\\Questions\\";
 		char file_name3[255];
 
 		sprintf(file_name3, "%s%s%s", temp_path, folder_path_result, Text_name);
@@ -405,13 +420,13 @@ namespace CourseProject4 {
 		for (int i = 0; i < count_questions; i++) {
 			fp = fopen(file_name3, "a");
 			if (fp != NULL) {
-				fprintf(fp, "Question: %d, RadioButton: %d\n", i, radioButtonValues[i]);
+				fprintf(fp, "Question: %d, RadioButton: %d, Text: %s\n", i, radioButtonValues[i], RightAnswerText[i]);
 				fclose(fp);
 
 			}
 		}
 
-		sprintf(file_name3, "%s%s%s", temp_path, folder_path_quesions, Text_name);
+		sprintf(file_name3, "%s%s%s", temp_path, folder_path_questions, Text_name);
 		createdir = mkdir(file_name3);
 		sprintf(file_name3, "%s\\Questions.txt", file_name3);
 
@@ -430,7 +445,7 @@ namespace CourseProject4 {
 			}
 		}
 
-		sprintf(file_name3, "%s%s%s", temp_path, folder_path_quesions, Text_name);
+		sprintf(file_name3, "%s%s%s", temp_path, folder_path_questions, Text_name);
 		createdir = mkdir(file_name3);
 		sprintf(file_name3, "%s\\Questions_answer.txt", file_name3);
  

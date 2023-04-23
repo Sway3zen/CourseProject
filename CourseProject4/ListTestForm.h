@@ -85,7 +85,7 @@ namespace CourseProject4 {
 			// 
 			this->vScrollBar1->Location = System::Drawing::Point(966, -2);
 			this->vScrollBar1->Name = L"vScrollBar1";
-			this->vScrollBar1->Size = System::Drawing::Size(18, 766);
+			this->vScrollBar1->Size = System::Drawing::Size(18, 752);
 			this->vScrollBar1->TabIndex = 4;
 			this->vScrollBar1->Scroll += gcnew System::Windows::Forms::ScrollEventHandler(this, &ListTestForm::vScrollBar1_Scroll);
 			// 
@@ -288,7 +288,7 @@ namespace CourseProject4 {
 
 			char file_name[255];
 
-			sprintf(file_name, "%s.txt", text);
+			sprintf(file_name, "%s", text);
 
 			String^ name_test = gcnew String(file_name);
 
