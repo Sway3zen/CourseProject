@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CreateTest.cpp" />
+    <ClCompile Include="DoTestForm.cpp" />
     <ClCompile Include="InfoForm.cpp" />
     <ClCompile Include="ListTestForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
@@ -134,6 +135,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="dlls\GetUsername.h" />
+    <ClInclude Include="DoTestForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="InfoForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

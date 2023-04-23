@@ -33,6 +33,9 @@
     <ClCompile Include="ListTestForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DoTestForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RegisterForm.h">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ListTestForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DoTestForm.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

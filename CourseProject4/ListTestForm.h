@@ -11,6 +11,7 @@ namespace CourseProject4 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Runtime::InteropServices;
 
 	/// <summary>
 	/// Summary for ListTestForm
@@ -258,6 +259,22 @@ namespace CourseProject4 {
 			return files = g - 2;
 		}
 
+		void WriteInfo(String^ name) {
+
+		}
+
+		void SaveToFile(char* value) {
+			char* temp_path = getenv("TEMP");
+			char* folder_path2 = "\\Testify\\Current info\\Current_test.bin";
+			char file_name[255];
+
+			sprintf(file_name, "%s%s", temp_path, folder_path2);
+
+			FILE* fp = fopen(file_name, "wb");
+			fwrite(value, sizeof(char), strlen(value), fp);
+			fclose(fp);
+		}
+
 		void btn_start_Click(System::Object^ sender, System::EventArgs^ e)
 		{
 			Button^ button = safe_cast<Button^>(sender);
@@ -274,7 +291,10 @@ namespace CourseProject4 {
 
 			String^ name_test = gcnew String(file_name);
 
-			System::Windows::Forms::MessageBox::Show(name_test, "Назва", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+			//System::Windows::Forms::MessageBox::Show(name_test, "Назва", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+
+			char* str2 = (char*)(void*)Marshal::StringToHGlobalAnsi(name_test);
+			SaveToFile(str2);
 
 		}
 
