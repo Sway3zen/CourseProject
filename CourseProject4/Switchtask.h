@@ -127,6 +127,7 @@ namespace CourseProject4 {
 			this->label4->Size = System::Drawing::Size(192, 25);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"Результати тестів";
+			this->label4->Click += gcnew System::EventHandler(this, &Switchtask::label4_Click);
 			// 
 			// Switchtask
 			// 
@@ -175,6 +176,17 @@ namespace CourseProject4 {
 	private: System::Void Switchtask_Load_1(System::Object^ sender, System::EventArgs^ e) {
 		char* username = GetUsername();
 		this->label1->Text = gcnew String(username);
+
+		String^ user = gcnew String(GetUsername());
+		
+		if (user != "Admin") {
+			label3->Visible = false;
+			label4->Visible = false;
+		}
+		else {
+			label3->Visible = true;
+			label4->Visible = true;
+		}
 	}
 	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
@@ -187,6 +199,8 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 	ListTestForm^ listform = gcnew ListTestForm();
 	listform->ShowDialog();
 	this->Show();
+}
+private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

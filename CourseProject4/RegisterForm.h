@@ -305,8 +305,7 @@ namespace CourseProject4 {
 		if (fp == NULL) {
 			fp = fopen(file_name, "wb");
 			if (fp == NULL) {
-				System::String^ temp_path_str = gcnew System::String(file_name);
-				System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+				System::Windows::Forms::MessageBox::Show("Не можу створити такого користувача.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 			}
 			else {
 				fwrite(&registration, sizeof(Registration), 1, fp);

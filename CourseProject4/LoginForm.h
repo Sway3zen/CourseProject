@@ -60,7 +60,7 @@
 //}
 
 namespace CourseProject4 {
-	
+
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -311,6 +311,7 @@ namespace CourseProject4 {
 #pragma endregion
 
 
+
 		void SaveToFile(char* value) {
 			char* temp_path = getenv("TEMP");
 			char* folder_path2 = "\\Testify\\Current info\\Current.bin";
@@ -322,6 +323,43 @@ namespace CourseProject4 {
 			//fprintf(fp, "Login:%s", str2);
 			fwrite(value, sizeof(char), strlen(value), fp);
 			fclose(fp);
+		}
+
+		void CreateAdmin() {
+			
+
+			char* temp_path = getenv("TEMP");
+			char* folder_path = "\\Testify\\Database";
+			char file_name[255];
+
+			sprintf(file_name, "%s%s", temp_path, folder_path);
+
+			int result = mkdir(file_name);
+
+			sprintf(file_name, "%s\\Admin.bin", file_name);
+
+			char Usernamechar[64];
+			sprintf(Usernamechar, "Login: Admin");
+			char Passwordchar[128];
+			sprintf(Passwordchar, "\nPassword: khnu\n");
+
+
+			Registration registration;
+			strcpy(registration.login, Usernamechar);
+			strcpy(registration.password, Passwordchar);
+
+			FILE* fp = fopen(file_name, "rb");
+			if (fp == NULL) {
+				fp = fopen(file_name, "wb");
+				if (fp == NULL) {
+					//System::Windows::Forms::MessageBox::Show("Не можу створити такого користувача.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+				}
+				else {
+					fwrite(&registration, sizeof(Registration), 1, fp);
+					fclose(fp);
+
+				}
+			}
 		}
 
 	private: System::Void LoginNextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -375,6 +413,7 @@ namespace CourseProject4 {
 		}
 	}
 private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	CreateAdmin();
 	char* temp_path = getenv("TEMP");
 	char file_name[255];
 
