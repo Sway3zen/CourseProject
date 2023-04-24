@@ -42,7 +42,7 @@ namespace CourseProject4 {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::MenuStrip^ menuStrip1;
+
 
 
 	private:
@@ -63,7 +63,6 @@ namespace CourseProject4 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->SuspendLayout();
 			// 
 			// LoginAuthor
@@ -129,14 +128,6 @@ namespace CourseProject4 {
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"Результати тестів";
 			// 
-			// menuStrip1
-			// 
-			this->menuStrip1->Location = System::Drawing::Point(0, 0);
-			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(984, 24);
-			this->menuStrip1->TabIndex = 7;
-			this->menuStrip1->Text = L"menuStrip1";
-			// 
 			// Switchtask
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -149,9 +140,7 @@ namespace CourseProject4 {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->LoginAuthor);
-			this->Controls->Add(this->menuStrip1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"Switchtask";
 			this->ShowIcon = false;
 			this->Text = L"Switchtask";
