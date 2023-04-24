@@ -42,6 +42,7 @@ namespace CourseProject4 {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 
 
 	private:
@@ -62,6 +63,7 @@ namespace CourseProject4 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->SuspendLayout();
 			// 
 			// LoginAuthor
@@ -92,12 +94,12 @@ namespace CourseProject4 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Roboto", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label2->ForeColor = System::Drawing::Color::White;
 			this->label2->Location = System::Drawing::Point(424, 236);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(152, 25);
+			this->label2->Size = System::Drawing::Size(156, 25);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Перелік тестів";
 			this->label2->Click += gcnew System::EventHandler(this, &Switchtask::label2_Click);
@@ -105,12 +107,12 @@ namespace CourseProject4 {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Roboto", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label3->ForeColor = System::Drawing::Color::White;
 			this->label3->Location = System::Drawing::Point(424, 273);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(152, 25);
+			this->label3->Size = System::Drawing::Size(155, 25);
 			this->label3->TabIndex = 5;
 			this->label3->Text = L"Створити тест";
 			this->label3->Click += gcnew System::EventHandler(this, &Switchtask::label3_Click);
@@ -118,14 +120,22 @@ namespace CourseProject4 {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Roboto", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label4->ForeColor = System::Drawing::Color::White;
 			this->label4->Location = System::Drawing::Point(407, 315);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(185, 25);
+			this->label4->Size = System::Drawing::Size(192, 25);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"Результати тестів";
+			// 
+			// menuStrip1
+			// 
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(984, 24);
+			this->menuStrip1->TabIndex = 7;
+			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// Switchtask
 			// 
@@ -139,7 +149,9 @@ namespace CourseProject4 {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->LoginAuthor);
+			this->Controls->Add(this->menuStrip1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"Switchtask";
 			this->ShowIcon = false;
 			this->Text = L"Switchtask";
