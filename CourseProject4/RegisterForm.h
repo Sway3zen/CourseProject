@@ -281,53 +281,47 @@ namespace CourseProject4 {
 		RegBoxUsername = System::Convert::ToString(RegTextBoxLogin->Text);
 		RegBoxPassword = System::Convert::ToString(RegTextBoxPassword->Text);
 		RegBoxPassword2 = System::Convert::ToString(RegTextBoxPassword2->Text);
-		char* temp_path = getenv("TEMP");
-		char* folder_path = "\\Testify\\Database";
-		char file_name[255];
 
-		sprintf(file_name, "%s%s", temp_path, folder_path);
-
-		int result = mkdir(file_name);
-
-		sprintf(file_name, "%s\\%s.bin", file_name, RegBoxUsername);
-
-		char Usernamechar[64];
-		sprintf(Usernamechar, "Login: %s", RegTextBoxLogin->Text);
-		char Passwordchar[128];
-		sprintf(Passwordchar, "\nPassword: %s", RegTextBoxPassword->Text);
-
-
-		Registration registration;
-		strcpy(registration.login, Usernamechar);
-		strcpy(registration.password, Passwordchar);
-
-		FILE* fp = fopen(file_name, "rb");
-		if (fp == NULL) {
-			fp = fopen(file_name, "wb");
-			if (fp == NULL) {
-				System::Windows::Forms::MessageBox::Show("Не можу створити такого користувача.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-			}
-			else {
-				fwrite(&registration, sizeof(Registration), 1, fp);
-				fclose(fp);
-
-			}
+		if (RegBoxPassword != RegBoxPassword2) {
+			System::Windows::Forms::MessageBox::Show("Не правильний пароль.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 		}
-		
-		this->Close();
+		else {
+			char* temp_path = getenv("TEMP");
+			char* folder_path = "\\Testify\\Database";
+			char file_name[255];
 
-		//fp = fopen(file_name, "wb");
-		//if (fp == NULL) {
-		//	System::String^ temp_path_str = gcnew System::String(file_name);
-		//	System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-		//}
-		//else {
-		//	if (fwrite(&registration, sizeof(Registration), 1, fp) != 1) {
-		//		System::String^ temp_path_str = gcnew System::String(file_name);
-		//		//System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-		//	}
-		//	fclose(fp);
-		//}
+			sprintf(file_name, "%s%s", temp_path, folder_path);
+
+			int result = mkdir(file_name);
+
+			sprintf(file_name, "%s\\%s.bin", file_name, RegBoxUsername);
+
+			char Usernamechar[64];
+			sprintf(Usernamechar, "Login: %s", RegTextBoxLogin->Text);
+			char Passwordchar[128];
+			sprintf(Passwordchar, "\nPassword: %s", RegTextBoxPassword->Text);
+
+
+			Registration registration;
+			strcpy(registration.login, Usernamechar);
+			strcpy(registration.password, Passwordchar);
+
+			FILE* fp = fopen(file_name, "rb");
+			if (fp == NULL) {
+				fp = fopen(file_name, "wb");
+				if (fp == NULL) {
+					System::Windows::Forms::MessageBox::Show("Не можу створити такого користувача.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+				}
+				else {
+					fwrite(&registration, sizeof(Registration), 1, fp);
+					fclose(fp);
+
+				}
+				fclose(fp);
+			}
+
+			this->Close();
+		}
 	}
 
 

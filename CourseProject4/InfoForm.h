@@ -184,8 +184,9 @@ namespace CourseProject4 {
 
 			   if (fp != NULL) {
 				   fread(data, sizeof(char), 100000, fp);
+				   fclose(fp);
+
 			   }
-			   fclose(fp);
 			   return data;
 	}
 private: System::Void InfoForm_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -227,8 +228,9 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	else {
 		fprintf(fp, "%s", text);
+		fclose(fp);
+
 	}
-	fclose(fp);
 }
 };
 }

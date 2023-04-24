@@ -320,9 +320,10 @@ namespace CourseProject4 {
 			sprintf(file_name, "%s%s", temp_path, folder_path2);
 
 			FILE* fp = fopen(file_name, "wb");
-			//fprintf(fp, "Login:%s", str2);
-			fwrite(value, sizeof(char), strlen(value), fp);
-			fclose(fp);
+			if (fp != NULL) {
+				fwrite(value, sizeof(char), strlen(value), fp);
+				fclose(fp);
+			}		
 		}
 
 		void CreateAdmin() {
@@ -360,14 +361,16 @@ namespace CourseProject4 {
 
 				}
 			}
+			else {
+				fclose(fp);
+
+			}
 		}
 
 	private: System::Void LoginNextBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		LoginBoxUsername = System::Convert::ToString(LoginTextBoxLogin->Text);
 		LoginBoxPassword = System::Convert::ToString(LoginTextBoxPassword->Text);
 		char* temp_path = getenv("TEMP");
-		//System::String^ temp_path_str = gcnew System::String(temp_path);
-		//System::Windows::Forms::MessageBox::Show(temp_path_str, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 
 		FILE* fp;
 		char file_name[100];
@@ -405,7 +408,6 @@ namespace CourseProject4 {
 				infoForm->ShowDialog();
 				this->Close();
 
-				//System::Windows::Forms::MessageBox::Show("Вхід", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 			}
 			else {
 				System::Windows::Forms::MessageBox::Show("Невірний логін або пароль.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
