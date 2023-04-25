@@ -187,6 +187,8 @@ namespace CourseProject4 {
 				text_names_box->Text = Test_names[i];
 				table->Controls->Add(text_names_box, 0, 0);
 				Label^ text_result_box = gcnew Label();
+				text_result_box->Text = GetLastMark(Test_names[i]);
+				table->Controls->Add(text_result_box, 1, 0);
 
 				Button^ btn_start = gcnew Button();
 				btn_start->BackColor = System::Drawing::Color::White;
@@ -260,8 +262,25 @@ namespace CourseProject4 {
 			return files = g - 2;
 		}
 
-		void WriteInfo(String^ name) {
+		char* GetUsername() {
+			char* temp_path = getenv("TEMP");
+			char* folder_path2 = "\\Testify\\Current info\\Current.bin";
+			char file_name[255];
 
+			sprintf(file_name, "%s%s", temp_path, folder_path2);
+
+			char* login = (char*)malloc(64);
+			FILE* fp = fopen(file_name, "rb");
+			char line[256];
+			while (fgets(line, sizeof(line), fp)) {
+				if (strstr(line, "") != NULL) {
+					sscanf(line, "%s", login);
+					break;
+				}
+			}
+			fclose(fp);
+
+			return login;
 		}
 
 		void SaveToFile(char* value) {
@@ -274,6 +293,38 @@ namespace CourseProject4 {
 			FILE* fp = fopen(file_name, "wb");
 			fwrite(value, sizeof(char), strlen(value), fp);
 			fclose(fp);
+		}
+
+		private:
+			String^ number_of_test;
+
+		String^ GetLastMark(String^ number) {
+			char* temp_path = getenv("TEMP");
+			char* folder_path_result = "\\Testify\\Result\\";
+			char file_name3[255];
+
+			sprintf(file_name3, "%s%s%s\\Global_Result.txt", temp_path, folder_path_result, number);
+
+			String^ result = "0/0";
+
+			char user[255];
+			sprintf(user, "%s -", GetUsername());
+
+			FILE* fp = fopen(file_name3, "r");
+
+			if (fp != NULL) {
+				char line[256];
+				while (fgets(line, sizeof(line), fp)) {
+					if (strstr(line, user) != NULL) {
+						sscanf(line, "%s", &result);
+					}
+				}
+				fclose(fp);
+				System::Windows::Forms::MessageBox::Show(result, "Τΰιλ³β", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+
+			}
+
+			return result;
 		}
 
 		void btn_start_Click(System::Object^ sender, System::EventArgs^ e)

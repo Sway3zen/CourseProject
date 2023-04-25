@@ -326,6 +326,62 @@ namespace CourseProject4 {
 			return result;
 		}
 
+		int GetResult() {
+			int rightanswer = 0;
+
+			char* temp_path = getenv("TEMP");
+			char pathglobalanswer[255];
+			char pathpeopleanswer[255];
+
+			char* number = GetNumberTest();
+			sprintf(pathglobalanswer, "%s\\Testify\\Result\\%s\\Answers.txt", temp_path, number);
+			sprintf(pathpeopleanswer, "%s\\Testify\\Result\\%s\\%s_Answers.txt", temp_path, number, GetUsername());
+
+
+			for (int i = 0; i < GetCountQuestions(); i++) {
+
+
+				char find_text[255];
+				char globalanswer[255];
+				char useranswer[255];
+
+				sprintf(find_text, "Question: %d, Text", i);
+
+				FILE* fp;
+				fp = fopen(pathglobalanswer, "r");
+				if (fp != NULL) {
+					char line[256];
+					while (fgets(line, sizeof(line), fp)) {
+						if (strstr(line, find_text) != NULL) {
+							sscanf(line, "Question: %d, Text: %s", &i, &globalanswer);
+						}
+					}
+					fclose(fp);
+				}
+
+				fp = fopen(pathpeopleanswer, "r");
+				if (fp != NULL) {
+					char line[256];
+					while (fgets(line, sizeof(line), fp)) {
+						if (strstr(line, find_text) != NULL) {
+							sscanf(line, "Question: %d, Text: %s", &i, &useranswer);
+						}
+					}
+					fclose(fp);
+				}
+
+				String^ global = gcnew String(globalanswer);
+				String^ user = gcnew String(useranswer);
+
+				if (global == user) {
+					rightanswer++;
+				}
+
+			}
+
+			return rightanswer;
+		}
+
 		String^ AddAnswerQuestion(int a, int b) {
 			char* temp_path = getenv("TEMP");
 			char path[255];
@@ -406,7 +462,7 @@ namespace CourseProject4 {
 		CreateQuestions();
 	}
 	private: System::Void DoTestForm_Update(System::Object^ sender, System::EventArgs^ e) {
-		vScrollBar1->Maximum = ((count_questions) * 245);
+		vScrollBar1->Maximum = ((count_questions) * 215);
 	}
 
 		   char* GetUsername() {
@@ -430,30 +486,53 @@ namespace CourseProject4 {
 			   return login;
 		   }
 
+		   void SaveInfoAboutUserTest() {
+			   array<String^>^ RightAnswerText = GetRightTextAnswer();
+			   char* temp_path = getenv("TEMP");
+			   char* folder_path_result = "\\Testify\\Result\\";
+			   char file_name3[255];
+
+			   sprintf(file_name3, "%s%s%s\\%s_Answers.txt", temp_path, folder_path_result, GetNumberTest(), GetUsername());
+
+			   FILE* fp;
+			   if ((fp = fopen(file_name3, "r")) == NULL) {
+				   fp = fopen(file_name3, "w");
+				   fprintf(fp, "\n");
+			   }
+
+			   for (int i = 0; i < count_questions; i++) {
+				   fp = fopen(file_name3, "a");
+				   if (fp != NULL) {
+					   fprintf(fp, "Question: %d, Text: %s\n", i, RightAnswerText[i]);
+					   fclose(fp);
+
+				   }
+			   }
+		   }
+
+		   void SaveInfoAboutUserResult() {
+			   char* temp_path = getenv("TEMP");
+			   char* folder_path_result = "\\Testify\\Result\\";
+			   char file_name3[255];
+
+			   sprintf(file_name3, "%s%s%s\\Global_Result.txt", temp_path, folder_path_result, GetNumberTest());
+
+			   FILE* fp;
+			   if ((fp = fopen(file_name3, "r")) == NULL) {
+				   fp = fopen(file_name3, "w");
+			   }
+			   fclose(fp);
+
+			   fp = fopen(file_name3, "a");
+				   if (fp != NULL) {
+					   fprintf(fp, "%s - %d/%d\n", GetUsername(), GetResult(), GetCountQuestions());
+					   fclose(fp);
+				   }
+		   }
+
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		array<String^>^ RightAnswerText = GetRightTextAnswer();
-		char* temp_path = getenv("TEMP");
-		char* folder_path_result = "\\Testify\\Result\\";
-		char file_name3[255];
-
-		sprintf(file_name3, "%s%s%s\\%s_Answers.txt", temp_path, folder_path_result, GetNumberTest(), GetUsername());
-
-		FILE* fp;
-		if ((fp = fopen(file_name3, "r")) == NULL) {
-			fp = fopen(file_name3, "w");
-		}
-		fclose(fp);
-
-
-
-		for (int i = 0; i < count_questions; i++) {
-			fp = fopen(file_name3, "a");
-			if (fp != NULL) {
-				fprintf(fp, "Question: %d, Text: %s\n", i, RightAnswerText[i]);
-				fclose(fp);
-
-			}
-		}
+		SaveInfoAboutUserTest();
+		SaveInfoAboutUserResult();
 	}
 };
 }
