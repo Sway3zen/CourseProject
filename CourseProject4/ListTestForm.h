@@ -163,11 +163,15 @@ namespace CourseProject4 {
 
 		array<TableLayoutPanel^>^ Panel_arr;
 		array<String^>^ Test_names;
+		char* numbs;
 		void CreateContainers() {
 			Panel_arr = gcnew array<TableLayoutPanel^>(files);
 
 			int tableposx = 130;
 			int tableposy = 50;
+
+			array<String^>^ RightAnswerText = GetLastMark();
+
 			for (int i = 0; i < files; i++) {
 				TableLayoutPanel^ table = gcnew TableLayoutPanel();
 				table->Location = System::Drawing::Point(tableposx, tableposy);
@@ -187,7 +191,7 @@ namespace CourseProject4 {
 				text_names_box->Text = Test_names[i];
 				table->Controls->Add(text_names_box, 0, 0);
 				Label^ text_result_box = gcnew Label();
-				text_result_box->Text = GetLastMark(Test_names[i]);
+				text_result_box->Text = RightAnswerText[i];
 				table->Controls->Add(text_result_box, 1, 0);
 
 				Button^ btn_start = gcnew Button();
@@ -298,33 +302,43 @@ namespace CourseProject4 {
 		private:
 			String^ number_of_test;
 
-		String^ GetLastMark(String^ number) {
+		array<String^>^ GetLastMark() {
+
 			char* temp_path = getenv("TEMP");
 			char* folder_path_result = "\\Testify\\Result\\";
-			char file_name3[255];
 
-			sprintf(file_name3, "%s%s%s\\Global_Result.txt", temp_path, folder_path_result, number);
+			array<String^>^ values = gcnew array<String^>(Test_names->Length);
 
-			String^ result = "0/0";
+			for (int i = 0; i < Test_names->Length; i++) {
+				char file_name3[255];
 
-			char user[255];
-			sprintf(user, "%s -", GetUsername());
+				sprintf(file_name3, "%s%s%s\\Global_Result.txt", temp_path, folder_path_result, Test_names[i]);
 
-			FILE* fp = fopen(file_name3, "r");
+				String^ result = "ne";
+				int mark;
+				int maxmark;
 
-			if (fp != NULL) {
-				char line[256];
-				while (fgets(line, sizeof(line), fp)) {
-					if (strstr(line, user) != NULL) {
-						sscanf(line, "%s", &result);
+
+				FILE* fp = fopen(file_name3, "r");
+
+				if (fp != NULL) {
+					char line[256];
+					while (fgets(line, sizeof(line), fp)) {
+							sscanf(line, "%s - %d/%d", GetUsername(), &mark, &maxmark);
+							result = mark + "/" + maxmark;
+							values[i] += result;
+							break;
 					}
+					fclose(fp);
+					
+
 				}
-				fclose(fp);
-				System::Windows::Forms::MessageBox::Show(result, "Файлів", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-
+				else {
+					values[i] = "Underfined";
+				}
 			}
+			return values;
 
-			return result;
 		}
 
 		void btn_start_Click(System::Object^ sender, System::EventArgs^ e)
@@ -334,22 +348,28 @@ namespace CourseProject4 {
 			TableLayoutPanel^ panel = safe_cast<TableLayoutPanel^>(Panel_arr[button->TabIndex]);
 
 			Label^ label = safe_cast<Label^>(panel->GetControlFromPosition(0, 0));
+			Label^ labelmark = safe_cast<Label^>(panel->GetControlFromPosition(1, 0));
 
-			String^ text = label->Text;
+			if (labelmark->Text == "Underfined") {
+				String^ text = label->Text;
 
-			char file_name[255];
+				char file_name[255];
 
-			sprintf(file_name, "%s", text);
+				sprintf(file_name, "%s", text);
 
-			String^ name_test = gcnew String(file_name);
+				String^ name_test = gcnew String(file_name);
 
 
-			char* str2 = (char*)(void*)Marshal::StringToHGlobalAnsi(name_test);
-			SaveToFile(str2);
-			DoTestForm^ dotest = gcnew DoTestForm();
-			this->Hide();
-			dotest->ShowDialog();
-			this->Show();
+				char* str2 = (char*)(void*)Marshal::StringToHGlobalAnsi(name_test);
+				SaveToFile(str2);
+				DoTestForm^ dotest = gcnew DoTestForm();
+				this->Hide();
+				dotest->ShowDialog();
+				this->Show();
+			}
+			else {
+				System::Windows::Forms::MessageBox::Show("Ви вже вирішували цей тест.", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+			}
 		}
 
 	private: System::Void ListTestForm_Load(System::Object^ sender, System::EventArgs^ e) {
