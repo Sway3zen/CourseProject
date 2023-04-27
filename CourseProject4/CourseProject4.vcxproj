@@ -129,6 +129,8 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="Switchtask.cpp" />
+    <ClCompile Include="ViewResultPeople.cpp" />
+    <ClCompile Include="ViewResultTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CreateTest.h">
@@ -153,6 +155,12 @@
     <ClInclude Include="Switchtask.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ViewResultPeople.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ViewResultTest.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CreateTest.resx">
@@ -175,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Switchtask.resx">
       <DependentUpon>Switchtask.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewResultTest.resx">
+      <DependentUpon>ViewResultTest.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

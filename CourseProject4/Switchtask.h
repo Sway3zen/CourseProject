@@ -3,6 +3,7 @@
 #include <string.h>
 #include "CreateTest.h"
 #include "ListTestForm.h"
+#include "ViewResultTest.h"
 #pragma once
 
 
@@ -122,7 +123,7 @@ namespace CourseProject4 {
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label4->ForeColor = System::Drawing::Color::White;
-			this->label4->Location = System::Drawing::Point(407, 315);
+			this->label4->Location = System::Drawing::Point(407, 311);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(192, 25);
 			this->label4->TabIndex = 6;
@@ -142,6 +143,7 @@ namespace CourseProject4 {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->LoginAuthor);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Name = L"Switchtask";
 			this->ShowIcon = false;
 			this->Text = L"Switchtask";
@@ -201,6 +203,10 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 	this->Show();
 }
 private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	ViewResultTest^ viewres = gcnew ViewResultTest();
+	viewres->ShowDialog();
+	this->Show();
 }
 };
 }
