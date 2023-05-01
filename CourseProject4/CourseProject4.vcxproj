@@ -184,6 +184,9 @@
     <EmbeddedResource Include="Switchtask.resx">
       <DependentUpon>Switchtask.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewResultPeople.resx">
+      <DependentUpon>ViewResultPeople.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewResultTest.resx">
       <DependentUpon>ViewResultTest.h</DependentUpon>
     </EmbeddedResource>
