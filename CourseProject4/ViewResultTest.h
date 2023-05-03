@@ -40,6 +40,9 @@ namespace CourseProject4 {
 			}
 		}
 	private: System::Windows::Forms::VScrollBar^ vScrollBar1;
+	private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label1;
 	protected:
 
 	private:
@@ -56,6 +59,10 @@ namespace CourseProject4 {
 		void InitializeComponent(void)
 		{
 			this->vScrollBar1 = (gcnew System::Windows::Forms::VScrollBar());
+			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// vScrollBar1
@@ -66,6 +73,53 @@ namespace CourseProject4 {
 			this->vScrollBar1->TabIndex = 0;
 			this->vScrollBar1->Scroll += gcnew System::Windows::Forms::ScrollEventHandler(this, &ViewResultTest::vScrollBar1_Scroll);
 			// 
+			// tableLayoutPanel1
+			// 
+			this->tableLayoutPanel1->BackColor = System::Drawing::Color::White;
+			this->tableLayoutPanel1->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::Single;
+			this->tableLayoutPanel1->ColumnCount = 2;
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				50.31546F)));
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				49.68454F)));
+			this->tableLayoutPanel1->Controls->Add(this->label2, 1, 0);
+			this->tableLayoutPanel1->Controls->Add(this->label1, 0, 0);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(200, 51);
+			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
+			this->tableLayoutPanel1->RowCount = 1;
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(635, 33);
+			this->tableLayoutPanel1->TabIndex = 1;
+			// 
+			// label1
+			// 
+			this->label1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->label1->Font = (gcnew System::Drawing::Font(L"Roboto", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(4, 1);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(311, 31);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Назва тесту";
+			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// label2
+			// 
+			this->label2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->label2->Font = (gcnew System::Drawing::Font(L"Roboto", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label2->Location = System::Drawing::Point(322, 1);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(309, 31);
+			this->label2->TabIndex = 1;
+			this->label2->Text = L"Переглянути результати участників";
+			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
 			// ViewResultTest
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -73,11 +127,13 @@ namespace CourseProject4 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->ClientSize = System::Drawing::Size(984, 761);
+			this->Controls->Add(this->tableLayoutPanel1);
 			this->Controls->Add(this->vScrollBar1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"ViewResultTest";
 			this->Text = L"ViewResultTest";
 			this->Load += gcnew System::EventHandler(this, &ViewResultTest::ViewResultTest_Load);
+			this->tableLayoutPanel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -89,7 +145,7 @@ namespace CourseProject4 {
 		array<String^>^ Test_names;
 		char* numbs;
 		void CreateContainers() {
-			Panel_arr = gcnew array<TableLayoutPanel^>(files);
+			Panel_arr = gcnew array<TableLayoutPanel^>(files+1);
 
 			int tableposx = 200;
 			int tableposy = 120;
@@ -235,6 +291,7 @@ namespace CourseProject4 {
 		else {
 			vScrollBar1->Maximum = ((files) * 50);
 		}
+		Panel_arr[files] = tableLayoutPanel1;
 	}
 	private: System::Void vScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
 		for (int i = 0; i < files; i++) {

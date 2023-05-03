@@ -122,6 +122,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CheckResultPeople.cpp" />
     <ClCompile Include="CreateTest.cpp" />
     <ClCompile Include="DoTestForm.cpp" />
     <ClCompile Include="InfoForm.cpp" />
@@ -133,6 +134,9 @@
     <ClCompile Include="ViewResultTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CheckResultPeople.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="CreateTest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -163,6 +167,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CheckResultPeople.resx">
+      <DependentUpon>CheckResultPeople.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateTest.resx">
       <DependentUpon>CreateTest.h</DependentUpon>
     </EmbeddedResource>

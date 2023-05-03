@@ -274,26 +274,6 @@ namespace CourseProject4 {
 			return files = g - 2;
 		}
 
-		char* GetUsername() {
-			char* temp_path = getenv("TEMP");
-			char* folder_path2 = "\\Testify\\Current info\\Current.bin";
-			char file_name[255];
-
-			sprintf(file_name, "%s%s", temp_path, folder_path2);
-
-			char* login = (char*)malloc(64);
-			FILE* fp = fopen(file_name, "rb");
-			char line[256];
-			while (fgets(line, sizeof(line), fp)) {
-				if (strstr(line, "") != NULL) {
-					sscanf(line, "%s", login);
-					break;
-				}
-			}
-			fclose(fp);
-
-			return login;
-		}
 
 		void SaveToFile(char* value) {
 			char* temp_path = getenv("TEMP");
@@ -307,47 +287,73 @@ namespace CourseProject4 {
 			fclose(fp);
 		}
 
+
+
+		char* GetUsername() {
+			char* temp_path = getenv("TEMP");
+			char folder_path2[] = "\\Testify\\Current info\\Current.bin";
+			char file_name[255];
+
+			sprintf(file_name, "%s%s", temp_path, folder_path2);
+
+			char* login = (char*)malloc(256);
+			FILE* fp = fopen(file_name, "rb");
+			char line[256];
+			while (fgets(line, sizeof(line), fp)) {
+				if (strstr(line, "") != NULL) {
+					sscanf(line, "%s", login);
+					break;
+				}
+			}
+			fclose(fp);
+			return login;
+		}
+
 		private:
 			String^ number_of_test;
 
-		array<String^>^ GetLastMark() {
+			array<String^>^ GetLastMark() {
+				char* temp_path = getenv("TEMP");
+				char folder_path_result[] = "\\Testify\\Result\\";
 
-			char* temp_path = getenv("TEMP");
-			char* folder_path_result = "\\Testify\\Result\\";
+				array<String^>^ values = gcnew array<String^>(Test_names->Length);
 
-			array<String^>^ values = gcnew array<String^>(Test_names->Length);
+				for (int i = 0; i < Test_names->Length; i++) {
+					char file_name3[255];
 
-			for (int i = 0; i < Test_names->Length; i++) {
-				char file_name3[255];
+					sprintf(file_name3, "%s%s%s\\Global_Result.txt", temp_path, folder_path_result, Test_names[i]);
 
-				sprintf(file_name3, "%s%s%s\\Global_Result.txt", temp_path, folder_path_result, Test_names[i]);
+					String^ result = "";
+					int mark;
+					int maxmark;
 
-				String^ result = "ne";
-				int mark;
-				int maxmark;
+					FILE* fp = fopen(file_name3, "r");
 
-
-				FILE* fp = fopen(file_name3, "r");
-
-				if (fp != NULL) {
-					char line[256];
-					while (fgets(line, sizeof(line), fp)) {
-							sscanf(line, "%s - %d/%d", GetUsername(), &mark, &maxmark);
-							result = mark + "/" + maxmark;
-							values[i] += result;
-							break;
+					if (fp != NULL) {
+						char line[256];
+						while (fgets(line, sizeof(line), fp)) {
+							char* username = GetUsername();
+							if (strstr(line, username) != NULL) {
+								if (sscanf(line, "%s", username) != NULL) {
+								sscanf(line, "%s - %d/%d", username, &mark, &maxmark);
+								result = String::Format("{0}/{1}", mark, maxmark);
+								values[i] = result;
+								}
+								break;
+							}
+							else {
+								values[i] = "Underfined";
+							}
+							free(username);
+						}
+						fclose(fp);
 					}
-					fclose(fp);
-					
-
+					else {
+						values[i] = "Underfined";
+					}
 				}
-				else {
-					values[i] = "Underfined";
-				}
+				return values;
 			}
-			return values;
-
-		}
 
 		void btn_start_Click(System::Object^ sender, System::EventArgs^ e)
 		{

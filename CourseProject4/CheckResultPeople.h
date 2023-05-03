@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <direct.h>
 #pragma once
 
 namespace CourseProject4 {
@@ -15,13 +15,16 @@ namespace CourseProject4 {
 	using namespace System::Runtime::InteropServices;
 
 	/// <summary>
-	/// Summary for DoTestForm
+	/// Summary for CheckResultPeople
 	/// </summary>
-	public ref class DoTestForm : public System::Windows::Forms::Form
+	public ref class CheckResultPeople : public System::Windows::Forms::Form
 	{
 	public:
-		DoTestForm(void)
+		CheckResultPeople(String^ text)
 		{
+			Username = text;
+			//System::Windows::Forms::MessageBox::Show(Username, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -32,26 +35,23 @@ namespace CourseProject4 {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~DoTestForm()
+		~CheckResultPeople()
 		{
 			if (components)
 			{
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ LoginAuthor;
-	protected:
-	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::VScrollBar^ vScrollBar1;
-	private: System::Windows::Forms::Button^ button3;
-
-
+	protected:
 
 	private:
-		/// <summary>
+		String^ Username;
+	private: System::Windows::Forms::RadioButton^ radioButton1;
+		   /// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -60,84 +60,52 @@ namespace CourseProject4 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->LoginAuthor = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->vScrollBar1 = (gcnew System::Windows::Forms::VScrollBar());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->SuspendLayout();
-			// 
-			// LoginAuthor
-			// 
-			this->LoginAuthor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(236)),
-				static_cast<System::Int32>(static_cast<System::Byte>(236)));
-			this->LoginAuthor->Cursor = System::Windows::Forms::Cursors::Default;
-			this->LoginAuthor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
-			this->LoginAuthor->Location = System::Drawing::Point(-3, 710);
-			this->LoginAuthor->Name = L"LoginAuthor";
-			this->LoginAuthor->Size = System::Drawing::Size(987, 40);
-			this->LoginAuthor->TabIndex = 3;
-			this->LoginAuthor->Text = L"© Swayze Inc.";
-			this->LoginAuthor->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-			// 
-			// label1
-			// 
-			this->label1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(236)),
-				static_cast<System::Int32>(static_cast<System::Byte>(236)));
-			this->label1->Cursor = System::Windows::Forms::Cursors::Default;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14));
-			this->label1->Location = System::Drawing::Point(-1, 721);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(987, 40);
-			this->label1->TabIndex = 4;
-			this->label1->Text = L"© Swayze Inc.";
-			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// vScrollBar1
 			// 
-			this->vScrollBar1->Location = System::Drawing::Point(968, -1);
+			this->vScrollBar1->Location = System::Drawing::Point(963, -2);
 			this->vScrollBar1->Name = L"vScrollBar1";
-			this->vScrollBar1->Size = System::Drawing::Size(18, 762);
-			this->vScrollBar1->TabIndex = 5;
-			this->vScrollBar1->Scroll += gcnew System::Windows::Forms::ScrollEventHandler(this, &DoTestForm::vScrollBar1_Scroll);
+			this->vScrollBar1->Size = System::Drawing::Size(20, 764);
+			this->vScrollBar1->TabIndex = 0;
+			this->vScrollBar1->Scroll += gcnew System::Windows::Forms::ScrollEventHandler(this, &CheckResultPeople::vScrollBar1_Scroll);
 			// 
-			// button3
+			// radioButton1
 			// 
-			this->button3->AutoSize = true;
-			this->button3->BackColor = System::Drawing::Color::White;
-			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button3->Location = System::Drawing::Point(827, 676);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(113, 28);
-			this->button3->TabIndex = 14;
-			this->button3->Text = L"Зберегти тест";
-			this->button3->UseVisualStyleBackColor = false;
-			this->button3->Click += gcnew System::EventHandler(this, &DoTestForm::button3_Click);
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Checked = true;
+			this->radioButton1->Enabled = false;
+			this->radioButton1->ForeColor = System::Drawing::Color::White;
+			this->radioButton1->Location = System::Drawing::Point(856, 124);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(85, 17);
+			this->radioButton1->TabIndex = 1;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"radioButton1";
+			this->radioButton1->UseVisualStyleBackColor = true;
 			// 
-			// DoTestForm
+			// CheckResultPeople
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->ClientSize = System::Drawing::Size(984, 761);
-			this->Controls->Add(this->button3);
+			this->Controls->Add(this->radioButton1);
 			this->Controls->Add(this->vScrollBar1);
-			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MaximizeBox = false;
-			this->Name = L"DoTestForm";
+			this->Name = L"CheckResultPeople";
 			this->ShowIcon = false;
-			this->Text = L"Проходження тесту";
-			this->Load += gcnew System::EventHandler(this, &DoTestForm::DoTestForm_Load);
+			this->Text = L"CheckResultPeople";
+			this->Load += gcnew System::EventHandler(this, &CheckResultPeople::CheckResultPeople_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-
 	private:
 		int count_questions = GetCountQuestions();
 		array<Panel^>^ Containers_arr;
@@ -202,19 +170,60 @@ namespace CourseProject4 {
 					radioButton->UseVisualStyleBackColor = true;
 					radioButton->Font = (gcnew System::Drawing::Font(L"Roboto", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 						static_cast<System::Byte>(204)));
+					//radioButton->Enabled = true;
+
+					//if (radioButton->Text == GetResult(i)) {
+					//	//radioButton->Enabled = false;
+					//	radioButton->Checked = true;
+					//	radioButton->Visible = false;
+					//}
+
 					this->Controls->Add(radioButton);
 					panel->Controls->Add(radioButton);
 					RadioButton_arr[i * 5 + g] = radioButton;
 
 					radioButtonY += 30;
+
 				}
 
 				Containers_arr[i] = panel;
 				this->Controls->Add(panel);
 			}
+			GetResult(1);
+			this->CheckResultPeople_Update(this, gcnew System::EventArgs());
 
-			this->DoTestForm_Update(this, gcnew System::EventArgs());
+		}
 
+		String^ GetResult(int i) {
+			String^ answer = nullptr;
+			char* temp_path = getenv("TEMP");
+			char pathpeopleanswer[255];
+			char* number = GetNumberTest();
+			char* Getname = (char*)(void*)Marshal::StringToHGlobalAnsi(Username);
+			sprintf(pathpeopleanswer, "%s\\Testify\\Result\\%s\\%s_Answers.txt", temp_path, number, Getname);
+
+			char find_text[255];
+			char useranswer[255];
+
+			sprintf(find_text, "Question: %d", i);
+
+			FILE* fp;
+			fp = fopen(pathpeopleanswer, "r");
+			if (fp != NULL) {
+				char line[256];
+				while (fgets(line, sizeof(line), fp)) {
+					if (strstr(line, find_text) != NULL) {
+						sscanf(line, "Question: %d, Text: %s", i, &useranswer);
+						answer = gcnew String(useranswer);
+					}
+				}
+				fclose(fp);
+			}
+
+			System::Windows::Forms::MessageBox::Show(answer, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+
+
+			return answer;
 		}
 
 		char* GetNumberTest() {
@@ -317,62 +326,6 @@ namespace CourseProject4 {
 			return result;
 		}
 
-		int GetResult() {
-			int rightanswer = 0;
-
-			char* temp_path = getenv("TEMP");
-			char pathglobalanswer[255];
-			char pathpeopleanswer[255];
-
-			char* number = GetNumberTest();
-			sprintf(pathglobalanswer, "%s\\Testify\\Result\\%s\\Answers.txt", temp_path, number);
-			sprintf(pathpeopleanswer, "%s\\Testify\\Result\\%s\\%s_Answers.txt", temp_path, number, GetUsername());
-
-
-			for (int i = 0; i < GetCountQuestions(); i++) {
-
-
-				char find_text[255];
-				char globalanswer[255];
-				char useranswer[255];
-
-				sprintf(find_text, "Question: %d, Text", i);
-
-				FILE* fp;
-				fp = fopen(pathglobalanswer, "r");
-				if (fp != NULL) {
-					char line[256];
-					while (fgets(line, sizeof(line), fp)) {
-						if (strstr(line, find_text) != NULL) {
-							sscanf(line, "Question: %d, Text: %s", &i, &globalanswer);
-						}
-					}
-					fclose(fp);
-				}
-
-				fp = fopen(pathpeopleanswer, "r");
-				if (fp != NULL) {
-					char line[256];
-					while (fgets(line, sizeof(line), fp)) {
-						if (strstr(line, find_text) != NULL) {
-							sscanf(line, "Question: %d, Text: %s", &i, &useranswer);
-						}
-					}
-					fclose(fp);
-				}
-
-				String^ global = gcnew String(globalanswer);
-				String^ user = gcnew String(useranswer);
-
-				if (global == user) {
-					rightanswer++;
-				}
-
-			}
-
-			return rightanswer;
-		}
-
 		String^ AddAnswerQuestion(int a, int b) {
 			char* temp_path = getenv("TEMP");
 			char path[255];
@@ -387,7 +340,7 @@ namespace CourseProject4 {
 			fp = fopen(path, "r");
 
 			char find_text[255];
-			sprintf(find_text, "Answer %d.%d:", a,b);
+			sprintf(find_text, "Answer %d.%d:", a, b);
 
 
 			if (fp == NULL) {
@@ -441,89 +394,38 @@ namespace CourseProject4 {
 			}
 			return values;
 		}
-
-
-	private: System::Void vScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
-		for (int i = 0; i < count_questions; i++) {
-			Containers_arr[i]->Location = System::Drawing::Point(227, (i * 265 + 44 - (vScrollBar1->Value)));
-		}
-
-	}
-	private: System::Void DoTestForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void CheckResultPeople_Load(System::Object^ sender, System::EventArgs^ e) {
 		CreateQuestions();
 	}
-	private: System::Void DoTestForm_Update(System::Object^ sender, System::EventArgs^ e) {
-		vScrollBar1->Maximum = ((count_questions) * 215);
+		private: System::Void CheckResultPeople_Update(System::Object^ sender, System::EventArgs^ e) {
+			vScrollBar1->Maximum = ((count_questions) * 215);
+		}
+
+			   char* GetUsername() {
+				   char* temp_path = getenv("TEMP");
+				   char* folder_path2 = "\\Testify\\Current info\\Current.bin";
+				   char file_name[255];
+
+				   sprintf(file_name, "%s%s", temp_path, folder_path2);
+
+				   char* login = (char*)malloc(64);
+				   FILE* fp = fopen(file_name, "rb");
+				   char line[256];
+				   while (fgets(line, sizeof(line), fp)) {
+					   if (strstr(line, "") != NULL) {
+						   sscanf(line, "%s", login);
+						   break;
+					   }
+				   }
+				   fclose(fp);
+
+				   return login;
+			   }
+
+private: System::Void vScrollBar1_Scroll(System::Object^ sender, System::Windows::Forms::ScrollEventArgs^ e) {
+	for (int i = 0; i < count_questions; i++) {
+		Containers_arr[i]->Location = System::Drawing::Point(227, (i * 265 + 44 - (vScrollBar1->Value)));
 	}
-
-		   char* GetUsername() {
-			   char* temp_path = getenv("TEMP");
-			   char* folder_path2 = "\\Testify\\Current info\\Current.bin";
-			   char file_name[255];
-
-			   sprintf(file_name, "%s%s", temp_path, folder_path2);
-
-			   char* login = (char*)malloc(64);
-			   FILE* fp = fopen(file_name, "rb");
-			   char line[256];
-			   while (fgets(line, sizeof(line), fp)) {
-				   if (strstr(line, "") != NULL) {
-					   sscanf(line, "%s", login);
-					   break;
-				   }
-			   }
-			   fclose(fp);
-
-			   return login;
-		   }
-
-		   void SaveInfoAboutUserTest() {
-			   array<String^>^ RightAnswerText = GetRightTextAnswer();
-			   char* temp_path = getenv("TEMP");
-			   char* folder_path_result = "\\Testify\\Result\\";
-			   char file_name3[255];
-
-			   sprintf(file_name3, "%s%s%s\\%s_Answers.txt", temp_path, folder_path_result, GetNumberTest(), GetUsername());
-
-			   FILE* fp;
-			   if ((fp = fopen(file_name3, "r")) == NULL) {
-				   fp = fopen(file_name3, "w");
-				   fprintf(fp, "\n");
-			   }
-
-			   for (int i = 0; i < count_questions; i++) {
-				   fp = fopen(file_name3, "a");
-				   if (fp != NULL) {
-					   fprintf(fp, "Question: %d, Text: %s\n", i, RightAnswerText[i]);
-					   fclose(fp);
-
-				   }
-			   }
-		   }
-
-		   void SaveInfoAboutUserResult() {
-			   char* temp_path = getenv("TEMP");
-			   char* folder_path_result = "\\Testify\\Result\\";
-			   char file_name3[255];
-
-			   sprintf(file_name3, "%s%s%s\\Global_Result.txt", temp_path, folder_path_result, GetNumberTest());
-
-			   FILE* fp;
-			   if ((fp = fopen(file_name3, "r")) == NULL) {
-				   fp = fopen(file_name3, "w");
-			   }
-			   fclose(fp);
-
-			   fp = fopen(file_name3, "a");
-				   if (fp != NULL) {
-					   fprintf(fp, "%s - %d/%d\n", GetUsername(), GetResult(), GetCountQuestions());
-					   fclose(fp);
-				   }
-		   }
-
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		SaveInfoAboutUserTest();
-		SaveInfoAboutUserResult();
-	}
+}
 };
 }
