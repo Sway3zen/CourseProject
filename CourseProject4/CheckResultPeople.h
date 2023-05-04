@@ -184,7 +184,7 @@ namespace CourseProject4 {
 			char* Getname = (char*)(void*)Marshal::StringToHGlobalAnsi(Username);
 			char* token = strtok(Getname, " ");
 			char newname[255];
-			//int j = 0;
+
 			while (token != NULL) {
 				strcat(newname, token);
 				token = strtok(NULL, " ");
