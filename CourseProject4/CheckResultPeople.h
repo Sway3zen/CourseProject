@@ -43,9 +43,7 @@ namespace CourseProject4 {
 			}
 		}
 	private: System::Windows::Forms::VScrollBar^ vScrollBar1;
-	protected:
-
-	private:
+	protected:	private:
 		String^ Username;
 	private: System::Windows::Forms::RadioButton^ radioButton1;
 		   /// <summary>
@@ -61,7 +59,6 @@ namespace CourseProject4 {
 		void InitializeComponent(void)
 		{
 			this->vScrollBar1 = (gcnew System::Windows::Forms::VScrollBar());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->SuspendLayout();
 			// 
 			// vScrollBar1
@@ -72,20 +69,6 @@ namespace CourseProject4 {
 			this->vScrollBar1->TabIndex = 0;
 			this->vScrollBar1->Scroll += gcnew System::Windows::Forms::ScrollEventHandler(this, &CheckResultPeople::vScrollBar1_Scroll);
 			// 
-			// radioButton1
-			// 
-			this->radioButton1->AutoSize = true;
-			this->radioButton1->Checked = true;
-			this->radioButton1->Enabled = false;
-			this->radioButton1->ForeColor = System::Drawing::Color::White;
-			this->radioButton1->Location = System::Drawing::Point(856, 124);
-			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(85, 17);
-			this->radioButton1->TabIndex = 1;
-			this->radioButton1->TabStop = true;
-			this->radioButton1->Text = L"radioButton1";
-			this->radioButton1->UseVisualStyleBackColor = true;
-			// 
 			// CheckResultPeople
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -93,7 +76,6 @@ namespace CourseProject4 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(30)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->ClientSize = System::Drawing::Size(984, 761);
-			this->Controls->Add(this->radioButton1);
 			this->Controls->Add(this->vScrollBar1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MaximizeBox = false;
@@ -102,7 +84,6 @@ namespace CourseProject4 {
 			this->Text = L"CheckResultPeople";
 			this->Load += gcnew System::EventHandler(this, &CheckResultPeople::CheckResultPeople_Load);
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -170,13 +151,13 @@ namespace CourseProject4 {
 					radioButton->UseVisualStyleBackColor = true;
 					radioButton->Font = (gcnew System::Drawing::Font(L"Roboto", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 						static_cast<System::Byte>(204)));
-					//radioButton->Enabled = true;
+					radioButton->Enabled = false;
 
-					//if (radioButton->Text == GetResult(i)) {
-					//	//radioButton->Enabled = false;
-					//	radioButton->Checked = true;
-					//	radioButton->Visible = false;
-					//}
+					if (radioButton->Text == GetResult(i)) {
+						radioButton->Enabled = true;
+						radioButton->Checked = true;
+						//radioButton->Visible = false;
+					}
 
 					this->Controls->Add(radioButton);
 					panel->Controls->Add(radioButton);
@@ -199,8 +180,18 @@ namespace CourseProject4 {
 			char* temp_path = getenv("TEMP");
 			char pathpeopleanswer[255];
 			char* number = GetNumberTest();
+
 			char* Getname = (char*)(void*)Marshal::StringToHGlobalAnsi(Username);
-			sprintf(pathpeopleanswer, "%s\\Testify\\Result\\%s\\%s_Answers.txt", temp_path, number, Getname);
+			char* token = strtok(Getname, " ");
+			char newname[255];
+			//int j = 0;
+			while (token != NULL) {
+				strcat(newname, token);
+				token = strtok(NULL, " ");
+			}
+			strcpy(Getname, newname);
+
+			sprintf(pathpeopleanswer, "%s\\Testify\\Result\\%s\\%s_Answers.txt", temp_path, number, newname);
 
 			char find_text[255];
 			char useranswer[255];
@@ -213,15 +204,15 @@ namespace CourseProject4 {
 				char line[256];
 				while (fgets(line, sizeof(line), fp)) {
 					if (strstr(line, find_text) != NULL) {
-						sscanf(line, "Question: %d, Text: %s", i, &useranswer);
+						sscanf(line, "Question: %d, Text: %s", &i, useranswer);
 						answer = gcnew String(useranswer);
 					}
 				}
 				fclose(fp);
 			}
-
-			System::Windows::Forms::MessageBox::Show(answer, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-
+			else {
+				System::Windows::Forms::MessageBox::Show("Не можу знайти відповіді", "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+			}
 
 			return answer;
 		}
@@ -240,7 +231,7 @@ namespace CourseProject4 {
 				//this->Close();
 			}
 			else {
-				while (fscanf(fp, "%s", &line) != EOF) {
+				while (fscanf(fp, "%s", line) != EOF) {
 				}
 			}
 
@@ -320,8 +311,6 @@ namespace CourseProject4 {
 			}
 
 			String^ result = gcnew String(question);
-			//System::Windows::Forms::MessageBox::Show(result, "Помилка", System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
-
 
 			return result;
 		}
