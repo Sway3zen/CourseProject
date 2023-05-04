@@ -43,6 +43,11 @@ namespace CourseProject4 {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::MenuStrip^ menuStrip1;
+	private: System::Windows::Forms::ToolStripMenuItem^ ïåðå³ëêÒåñò³âToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñòâîðèòèÒåñòToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ ðåçóëüòàòèÒåñò³âToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ ðåäàãóâàííÿÒåñò³âToolStripMenuItem;
 
 
 
@@ -64,6 +69,12 @@ namespace CourseProject4 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+			this->ïåðå³ëêÒåñò³âToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñòâîðèòèÒåñòToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ðåçóëüòàòèÒåñò³âToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ðåäàãóâàííÿÒåñò³âToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// LoginAuthor
@@ -130,6 +141,46 @@ namespace CourseProject4 {
 			this->label4->Text = L"Ðåçóëüòàòè òåñò³â";
 			this->label4->Click += gcnew System::EventHandler(this, &Switchtask::label4_Click);
 			// 
+			// menuStrip1
+			// 
+			this->menuStrip1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(236)));
+			this->menuStrip1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->menuStrip1->Font = (gcnew System::Drawing::Font(L"Roboto", 10));
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+				this->ïåðå³ëêÒåñò³âToolStripMenuItem,
+					this->ñòâîðèòèÒåñòToolStripMenuItem, this->ðåçóëüòàòèÒåñò³âToolStripMenuItem, this->ðåäàãóâàííÿÒåñò³âToolStripMenuItem
+			});
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(984, 25);
+			this->menuStrip1->TabIndex = 7;
+			this->menuStrip1->Text = L"menuStrip1";
+			// 
+			// ïåðå³ëêÒåñò³âToolStripMenuItem
+			// 
+			this->ïåðå³ëêÒåñò³âToolStripMenuItem->Name = L"ïåðå³ëêÒåñò³âToolStripMenuItem";
+			this->ïåðå³ëêÒåñò³âToolStripMenuItem->Size = System::Drawing::Size(97, 20);
+			this->ïåðå³ëêÒåñò³âToolStripMenuItem->Text = L"Ïåðåë³ê òåñò³â";
+			// 
+			// ñòâîðèòèÒåñòToolStripMenuItem
+			// 
+			this->ñòâîðèòèÒåñòToolStripMenuItem->Name = L"ñòâîðèòèÒåñòToolStripMenuItem";
+			this->ñòâîðèòèÒåñòToolStripMenuItem->Size = System::Drawing::Size(96, 20);
+			this->ñòâîðèòèÒåñòToolStripMenuItem->Text = L"Ñòâîðèòè òåñò";
+			// 
+			// ðåçóëüòàòèÒåñò³âToolStripMenuItem
+			// 
+			this->ðåçóëüòàòèÒåñò³âToolStripMenuItem->Name = L"ðåçóëüòàòèÒåñò³âToolStripMenuItem";
+			this->ðåçóëüòàòèÒåñò³âToolStripMenuItem->Size = System::Drawing::Size(113, 20);
+			this->ðåçóëüòàòèÒåñò³âToolStripMenuItem->Text = L"Ðåçóëüòàòè òåñò³â";
+			// 
+			// ðåäàãóâàííÿÒåñò³âToolStripMenuItem
+			// 
+			this->ðåäàãóâàííÿÒåñò³âToolStripMenuItem->Name = L"ðåäàãóâàííÿÒåñò³âToolStripMenuItem";
+			this->ðåäàãóâàííÿÒåñò³âToolStripMenuItem->Size = System::Drawing::Size(121, 20);
+			this->ðåäàãóâàííÿÒåñò³âToolStripMenuItem->Text = L"Ðåäàãóâàííÿ òåñò³â";
+			// 
 			// Switchtask
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -142,12 +193,16 @@ namespace CourseProject4 {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->LoginAuthor);
+			this->Controls->Add(this->menuStrip1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MainMenuStrip = this->menuStrip1;
 			this->MaximizeBox = false;
 			this->Name = L"Switchtask";
 			this->ShowIcon = false;
 			this->Text = L"Switchtask";
 			this->Load += gcnew System::EventHandler(this, &Switchtask::Switchtask_Load_1);
+			this->menuStrip1->ResumeLayout(false);
+			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -184,10 +239,16 @@ namespace CourseProject4 {
 		if (user != "Admin") {
 			label3->Visible = false;
 			label4->Visible = false;
+			ñòâîðèòèÒåñòToolStripMenuItem->Visible = false;
+			ðåçóëüòàòèÒåñò³âToolStripMenuItem->Visible = false;
+			ðåäàãóâàííÿÒåñò³âToolStripMenuItem->Visible = false;
 		}
 		else {
 			label3->Visible = true;
 			label4->Visible = true;
+			ñòâîðèòèÒåñòToolStripMenuItem->Visible = true;
+			ðåçóëüòàòèÒåñò³âToolStripMenuItem->Visible = true;
+			ðåäàãóâàííÿÒåñò³âToolStripMenuItem->Visible = true;
 		}
 	}
 	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {

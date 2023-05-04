@@ -11,54 +11,6 @@
 #pragma once
 #include "RegisterForm.h"
 
-
-
-//const char* convertString(System::String^ str) {
-//	std::string stdStr = msclr::interop::marshal_as<std::string>(str);
-//	return stdStr.c_str();
-//}
-
-//void saveToJsonFile(const char* value) {
-//	cJSON* root = cJSON_CreateObject();
-//
-//	cJSON_AddItemToObject(root, "login", cJSON_CreateString(value));
-//
-//	char* temp_path = getenv("TEMP");
-//	char* folder_path = "\\Testify\\Current info\\Current.json";
-//	char file_name[255];
-//
-//	sprintf(file_name, "%s%s", temp_path, folder_path);
-//
-//	_mkdir(temp_path);
-//
-//	FILE* fp = fopen(file_name, "w");
-//	fprintf(fp, "%s", cJSON_Print(root));
-//	fclose(fp);
-//
-//	cJSON_Delete(root);
-//}
-
-
-//void saveToJsonFile(const char* value) {
-//	json_t* root = json_object();
-//
-//	json_object_set_new(root, "login", json_string(value));
-//
-//	char* temp_path = getenv("TEMP");
-//	char* folder_path = "\\Testify\\Current info\\Current.json";
-//	char file_name[255];
-//
-//	sprintf(file_name, "%s%s", temp_path, folder_path);
-//
-//	mkdir(temp_path);
-//
-//	FILE* fp = fopen(file_name, "w");
-//	fprintf(fp, "%s", json_dumps(root, JSON_INDENT(2) | JSON_SORT_KEYS));
-//	fclose(fp);
-//
-//	json_decref(root);
-//}
-
 namespace CourseProject4 {
 
 
