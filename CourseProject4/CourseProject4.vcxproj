@@ -122,32 +122,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CheckResultPeople.cpp" />
     <ClCompile Include="CreateTest.cpp" />
-    <ClCompile Include="DoTestForm.cpp" />
     <ClCompile Include="InfoForm.cpp" />
-    <ClCompile Include="ListTestForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="Switchtask.cpp" />
-    <ClCompile Include="ViewResultPeople.cpp" />
-    <ClCompile Include="ViewResultTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CheckResultPeople.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="CreateTest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="dlls\GetUsername.h" />
-    <ClInclude Include="DoTestForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="InfoForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="ListTestForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
@@ -159,28 +145,13 @@
     <ClInclude Include="Switchtask.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="ViewResultPeople.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="ViewResultTest.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CheckResultPeople.resx">
-      <DependentUpon>CheckResultPeople.h</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CreateTest.resx">
       <DependentUpon>CreateTest.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DoTestForm.resx">
-      <DependentUpon>DoTestForm.h</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="InfoForm.resx">
       <DependentUpon>InfoForm.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListTestForm.resx">
-      <DependentUpon>ListTestForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
@@ -190,12 +161,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Switchtask.resx">
       <DependentUpon>Switchtask.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewResultPeople.resx">
-      <DependentUpon>ViewResultPeople.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewResultTest.resx">
-      <DependentUpon>ViewResultTest.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

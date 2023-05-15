@@ -160,26 +160,30 @@ namespace CourseProject4 {
 			// переілкТестівToolStripMenuItem
 			// 
 			this->переілкТестівToolStripMenuItem->Name = L"переілкТестівToolStripMenuItem";
-			this->переілкТестівToolStripMenuItem->Size = System::Drawing::Size(97, 20);
+			this->переілкТестівToolStripMenuItem->Size = System::Drawing::Size(112, 21);
 			this->переілкТестівToolStripMenuItem->Text = L"Перелік тестів";
+			this->переілкТестівToolStripMenuItem->Click += gcnew System::EventHandler(this, &Switchtask::переілкТестівToolStripMenuItem_Click);
 			// 
 			// створитиТестToolStripMenuItem
 			// 
 			this->створитиТестToolStripMenuItem->Name = L"створитиТестToolStripMenuItem";
-			this->створитиТестToolStripMenuItem->Size = System::Drawing::Size(96, 20);
+			this->створитиТестToolStripMenuItem->Size = System::Drawing::Size(113, 21);
 			this->створитиТестToolStripMenuItem->Text = L"Створити тест";
+			this->створитиТестToolStripMenuItem->Click += gcnew System::EventHandler(this, &Switchtask::створитиТестToolStripMenuItem_Click);
 			// 
 			// результатиТестівToolStripMenuItem
 			// 
 			this->результатиТестівToolStripMenuItem->Name = L"результатиТестівToolStripMenuItem";
-			this->результатиТестівToolStripMenuItem->Size = System::Drawing::Size(113, 20);
+			this->результатиТестівToolStripMenuItem->Size = System::Drawing::Size(137, 21);
 			this->результатиТестівToolStripMenuItem->Text = L"Результати тестів";
+			this->результатиТестівToolStripMenuItem->Click += gcnew System::EventHandler(this, &Switchtask::результатиТестівToolStripMenuItem_Click);
 			// 
 			// редагуванняТестівToolStripMenuItem
 			// 
 			this->редагуванняТестівToolStripMenuItem->Name = L"редагуванняТестівToolStripMenuItem";
-			this->редагуванняТестівToolStripMenuItem->Size = System::Drawing::Size(121, 20);
+			this->редагуванняТестівToolStripMenuItem->Size = System::Drawing::Size(146, 21);
 			this->редагуванняТестівToolStripMenuItem->Text = L"Редагування тестів";
+			this->редагуванняТестівToolStripMenuItem->Click += gcnew System::EventHandler(this, &Switchtask::редагуванняТестівToolStripMenuItem_Click);
 			// 
 			// Switchtask
 			// 
@@ -268,6 +272,26 @@ private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e)
 	ViewResultTest^ viewres = gcnew ViewResultTest();
 	viewres->ShowDialog();
 	this->Show();
+}
+private: System::Void переілкТестівToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	ListTestForm^ listform = gcnew ListTestForm();
+	listform->ShowDialog();
+	this->Show();
+}
+private: System::Void створитиТестToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	CreateTest^ createTest = gcnew CreateTest();
+	createTest->ShowDialog();
+	this->Show();
+}
+private: System::Void результатиТестівToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	ViewResultTest^ viewres = gcnew ViewResultTest();
+	viewres->ShowDialog();
+	this->Show();
+}
+private: System::Void редагуванняТестівToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

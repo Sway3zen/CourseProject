@@ -30,21 +30,6 @@
     <ClCompile Include="CreateTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ListTestForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DoTestForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewResultTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewResultPeople.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckResultPeople.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RegisterForm.h">
@@ -64,21 +49,6 @@
     </ClInclude>
     <ClInclude Include="CreateTest.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ListTestForm.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DoTestForm.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewResultTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewResultPeople.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CheckResultPeople.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

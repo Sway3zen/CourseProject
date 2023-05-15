@@ -12,6 +12,7 @@ namespace CourseProject4 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Summary for CreateTest
@@ -392,11 +393,16 @@ namespace CourseProject4 {
 	private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
 		array<int>^ radioButtonValues = GetRadioButtonValues();
 		array<String^>^ RightAnswerText = GetRightTextAnswer();
-		array<String^>^ QuestionsValues;
-		QuestionsValues = gcnew array<String^>(count_questions);
+		List<String^>^ RightAnswerText_List = gcnew List<String^>();
+		for (int i = 0; i < RightAnswerText->Length; i++) {
+			RightAnswerText_List->Add(RightAnswerText[i]);
+		}
+		//array<String^>^ QuestionsValues;
+		//QuestionsValues = gcnew array<String^>(count_questions);
+		List<String^>^ QuestionsValues = gcnew List<String^>();
 
 		for (int i = 0; i < count_questions; i++) {
-			QuestionsValues[i] = Questions[i]->Text;
+			QuestionsValues->Add(Questions[i]->Text);
 		}
 
 		char* temp_path = getenv("TEMP");
@@ -420,7 +426,7 @@ namespace CourseProject4 {
 		for (int i = 0; i < count_questions; i++) {
 			fp = fopen(file_name3, "a");
 			if (fp != NULL) {
-				fprintf(fp, "Question: %d, Text: %s\n", i, RightAnswerText[i]);
+				fprintf(fp, "Question: %d, Text: %s\n", i, RightAnswerText_List[i]);
 				fclose(fp);
 
 			}
